@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    { "src": "/exam", "dest": "/exam.html" },
+    { "src": "/study-guide", "dest": "/study-guide.html" }
+  ]
+}
