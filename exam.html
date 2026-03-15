@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECBA Mock Exam</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1117;
+    --surface: #161b27;
+    --surface2: #1d2436;
+    --border: #2a3347;
+    --accent: #e8b84b;
+    --accent2: #5b8dee;
+    --text: #e8eaf0;
+    --text-dim: #8892a4;
+    --correct: #3ecf8e;
+    --wrong: #f06b6b;
+    --font-serif: 'Libre Baskerville', Georgia, serif;
+    --font-sans: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── GRID LINES ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(91,141,238,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91,141,238,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 32px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .header-left {}
+  .exam-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .exam-title {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .exam-sub {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    font-weight: 300;
+  }
+
+  /* ── TIMER ── */
+  .timer-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 130px;
+    flex-shrink: 0;
+  }
+  .timer-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .timer-display {
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+  .timer-display.warning { color: var(--wrong); }
+  .timer-progress {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .timer-bar {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 1s linear, background 0.3s;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .progress-track {
+    flex: 1;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+  .progress-text {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  /* ── QUESTION CARD ── */
+  .question-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px;
+    margin-bottom: 20px;
+    position: relative;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .q-number {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+  .q-domain {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--accent2);
+  }
+
+  .q-text {
+    font-family: var(--font-serif);
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+
+  /* ── OPTIONS ── */
+  .options { display: flex; flex-direction: column; gap: 10px; }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+  .option:hover:not(.disabled) {
+    border-color: var(--accent2);
+    background: rgba(91,141,238,0.06);
+  }
+  .option.selected {
+    border-color: var(--accent2);
+    background: rgba(91,141,238,0.1);
+  }
+  .option.correct {
+    border-color: var(--correct);
+    background: rgba(62,207,142,0.08);
+  }
+  .option.wrong {
+    border-color: var(--wrong);
+    background: rgba(240,107,107,0.08);
+  }
+  .option.disabled { cursor: default; }
+
+  .opt-letter {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-dim);
+    width: 20px;
+    flex-shrink: 0;
+    padding-top: 2px;
+    transition: color 0.15s;
+  }
+  .option.selected .opt-letter { color: var(--accent2); }
+  .option.correct .opt-letter { color: var(--correct); }
+  .option.wrong .opt-letter { color: var(--wrong); }
+
+  .opt-text {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text);
+    font-weight: 300;
+  }
+
+  /* ── EXPLANATION ── */
+  .explanation {
+    margin-top: 20px;
+    padding: 18px 20px;
+    background: rgba(232,184,75,0.05);
+    border: 1px solid rgba(232,184,75,0.2);
+    border-radius: 10px;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .explanation.show { display: block; }
+  .explanation-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .explanation-text {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+
+  /* ── BUTTONS ── */
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 8px;
+  }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 11px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-weight: 500;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0e1117;
+  }
+  .btn-primary:hover { background: #f0c55a; transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.4; cursor: default; transform: none; }
+  .btn-secondary {
+    background: var(--surface2);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--accent2); color: var(--text); }
+
+  /* ── START SCREEN ── */
+  #start-screen {
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .start-icon {
+    font-size: 48px;
+    margin-bottom: 24px;
+  }
+  .start-title {
+    font-family: var(--font-serif);
+    font-size: 34px;
+    margin-bottom: 12px;
+  }
+  .start-desc {
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.65;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    font-weight: 300;
+  }
+  .start-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    text-align: center;
+  }
+  .stat-val {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    color: var(--accent);
+    display: block;
+    font-weight: 500;
+  }
+  .stat-lbl {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── RESULTS ── */
+  #results-screen { display: none; padding: 20px 0; }
+  .results-hero {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 40px 32px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 32px;
+    font-weight: 500;
+    border: 3px solid;
+  }
+  .score-circle.pass { border-color: var(--correct); color: var(--correct); }
+  .score-circle.fail { border-color: var(--wrong); color: var(--wrong); }
+  .result-headline {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .result-sub {
+    color: var(--text-dim);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .domain-breakdown {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+  }
+  .breakdown-title {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .domain-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .domain-name {
+    font-size: 12px;
+    color: var(--text);
+    width: 220px;
+    flex-shrink: 0;
+    font-weight: 300;
+  }
+  .domain-bar-track {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .domain-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+  .domain-score-txt {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    width: 40px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ── REVIEW ── */
+  .review-section { margin-top: 8px; }
+  .review-title {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-top: 4px;
+  }
+  .review-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 14px;
+  }
+  .review-card.r-correct { border-left: 3px solid var(--correct); }
+  .review-card.r-wrong { border-left: 3px solid var(--wrong); }
+  .review-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .review-q-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+  .review-status {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+  .review-status.correct-badge { background: rgba(62,207,142,0.12); color: var(--correct); }
+  .review-status.wrong-badge { background: rgba(240,107,107,0.12); color: var(--wrong); }
+  .review-q-text {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .review-answers {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+  .review-answers span { font-weight: 500; }
+  .review-expl {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  /* ── NAV DOTS ── */
+  .nav-dots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .nav-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .nav-dot:hover { border-color: var(--accent2); }
+  .nav-dot.active { border-color: var(--accent2); background: rgba(91,141,238,0.15); color: var(--accent2); }
+  .nav-dot.answered { background: rgba(232,184,75,0.1); border-color: rgba(232,184,75,0.3); color: var(--accent); }
+  .nav-dot.answered.active { border-color: var(--accent); }
+
+  #exam-screen { display: none; }
+
+  /* ── ATTEMPT HISTORY ── */
+  .history-section {
+    max-width: 560px;
+    margin: 0 auto 32px;
+    display: none;
+    text-align: left;
+  }
+  .history-section.show { display: block; }
+  .history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .history-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .history-clear {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding: 0;
+  }
+  .history-clear:hover { color: var(--wrong); }
+
+  .attempt-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .attempt-row:hover { border-color: var(--accent2); background: var(--surface2); }
+  .attempt-row.best { border-color: rgba(232,184,75,0.3); }
+  .attempt-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    width: 24px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+  .attempt-score {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    width: 58px;
+    flex-shrink: 0;
+  }
+  .attempt-score.pass { color: var(--correct); }
+  .attempt-score.fail { color: var(--wrong); }
+  .attempt-details { flex: 1; }
+  .attempt-date {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 300;
+    margin-bottom: 4px;
+  }
+  .attempt-domain-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .adp {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+  }
+  .attempt-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .attempt-time {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    text-align: right;
+  }
+  .best-badge {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: rgba(232,184,75,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(232,184,75,0.3);
+    text-align: center;
+  }
+
+  .history-start-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .header { flex-direction: column; }
+    .domain-name { width: 140px; font-size: 11px; }
+    .question-card { padding: 22px 18px; }
+    .start-stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ══ START SCREEN ══ -->
+  <div id="start-screen">
+    <div class="start-icon">📋</div>
+    <div class="start-title">ECBA Mock Exam</div>
+    <div class="start-desc">
+      A full-length practice exam modeled on the IIBA ECBA certification. 50 questions drawn from all six BABOK® v3 Knowledge Areas. 60 minutes on the clock.
+    </div>
+    <div class="start-stats">
+      <div class="stat-item"><span class="stat-val">50</span><span class="stat-lbl">Questions</span></div>
+      <div class="stat-item"><span class="stat-val">60</span><span class="stat-lbl">Minutes</span></div>
+      <div class="stat-item"><span class="stat-val">6</span><span class="stat-lbl">Knowledge Areas</span></div>
+      <div class="stat-item"><span class="stat-val">75%</span><span class="stat-lbl">Target Score</span></div>
+    </div>
+
+    <div class="history-section" id="history-section">
+      <div class="history-header">
+        <div class="history-label">Attempt History</div>
+        <button class="history-clear" onclick="clearHistory()">Clear all</button>
+      </div>
+      <div id="history-list"></div>
+      <div class="history-start-row">
+        <button class="btn btn-primary" onclick="startExam()" style="font-size:13px;padding:14px 40px;margin-top:8px;">New Attempt</button>
+      </div>
+    </div>
+
+    <div id="start-btn-row">
+      <button class="btn btn-primary" onclick="startExam()" style="font-size:13px;padding:14px 40px;">Begin Exam</button>
+    </div>
+  </div>
+
+  <!-- ══ EXAM SCREEN ══ -->
+  <div id="exam-screen">
+    <div class="header">
+      <div class="header-left">
+        <div class="exam-label">IIBA · ECBA Practice</div>
+        <div class="exam-title">Mock Exam</div>
+        <div class="exam-sub">BABOK® Guide v3 — All Knowledge Areas</div>
+      </div>
+      <div class="timer-box">
+        <div class="timer-label">Time Remaining</div>
+        <div class="timer-display" id="timer">60:00</div>
+        <div class="timer-progress"><div class="timer-bar" id="timer-bar" style="width:100%"></div></div>
+      </div>
+    </div>
+
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+      <div class="progress-text" id="progress-text">0 / 50</div>
+    </div>
+
+    <div class="nav-dots" id="nav-dots"></div>
+
+    <div id="question-area"></div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="prevQ()" id="btn-prev">← Prev</button>
+      <button class="btn btn-primary" onclick="nextQ()" id="btn-next">Next →</button>
+      <button class="btn btn-primary" onclick="submitExam()" id="btn-submit" style="display:none;background:#e8b84b;">Submit Exam</button>
+    </div>
+  </div>
+
+  <!-- ══ RESULTS SCREEN ══ -->
+  <div id="results-screen">
+    <div class="header">
+      <div class="header-left">
+        <div class="exam-label">IIBA · ECBA Practice</div>
+        <div class="exam-title">Results</div>
+      </div>
+    </div>
+
+    <div class="results-hero">
+      <div class="score-circle" id="score-circle"></div>
+      <div class="result-headline" id="result-headline"></div>
+      <div class="result-sub" id="result-sub"></div>
+      <div style="margin-top:12px;font-family:var(--font-mono);font-size:11px;color:var(--text-dim)" id="result-time"></div>
+    </div>
+
+    <div class="domain-breakdown">
+      <div class="breakdown-title">Performance by Knowledge Area</div>
+      <div id="domain-bars"></div>
+    </div>
+
+    <div class="btn-row" style="margin-bottom:28px;">
+      <button class="btn btn-secondary" onclick="retakeExam()">Retake Exam</button>
+      <button class="btn btn-primary" onclick="showReview()">Review Answers</button>
+    </div>
+
+    <div class="review-section" id="review-section" style="display:none;">
+      <div class="review-title">Answer Review</div>
+      <div id="review-cards"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const TOTAL_SECONDS = 3600;
+
+const questions = [
+  // ── BUSINESS ANALYSIS PLANNING & MONITORING (1–9) ──
+  {
+    domain: "BA Planning & Monitoring",
+    text: "A business analyst is beginning a new project and must decide how to approach the analysis work. Which of the following is the PRIMARY purpose of the Plan Business Analysis Approach task?",
+    options: [
+      "To document all stakeholder requirements before work begins",
+      "To define the method and timing of business analysis activities for the initiative",
+      "To create a project schedule aligned with the project manager's plan",
+      "To identify risks associated with the solution under development"
+    ],
+    answer: 1,
+    explanation: "The Plan Business Analysis Approach task establishes how and when BA activities will be performed throughout the initiative. It defines the overall methodology—predictive, adaptive, or a hybrid—and the key deliverables and processes to be used."
+  },
+  {
+    domain: "BA Planning & Monitoring",
+    text: "When planning stakeholder engagement, a business analyst discovers that one stakeholder group has very high influence but low interest in the project outcome. What is the BEST engagement strategy for this group?",
+    options: [
+      "Engage them frequently and involve them in all decisions",
+      "Keep them informed with minimal active engagement",
+      "Manage them closely and address their concerns proactively",
+      "Monitor them passively and engage only when necessary"
+    ],
+    answer: 2,
+    explanation: "Stakeholders with high influence but low interest should be managed closely—their low interest doesn't reduce their impact, so a BA must keep them satisfied and address concerns proactively to prevent them from becoming blockers."
+  },
+  {
+    domain: "BA Planning & Monitoring",
+    text: "A business analyst is working on a large enterprise project and must choose an information management approach. Which consideration is MOST important when determining how BA information will be stored and accessed?",
+    options: [
+      "The personal preference of the senior business analyst",
+      "The number of requirements documents to be produced",
+      "The needs of the stakeholders who will access and use the information",
+      "The tools currently licensed by the IT department"
+    ],
+    answer: 2,
+    explanation: "The Plan Information Management task centers on ensuring that BA information—requirements, models, decisions—is organized in a way that meets the needs of those who must access, review, and use it throughout and after the project."
+  },
+  {
+    domain: "BA Planning & Monitoring",
+    text: "Which of the following BEST describes a business analysis performance assessment?",
+    options: [
+      "A formal review of the project manager's performance on BA tasks",
+      "An evaluation of whether BA activities are producing the desired outcomes and whether adjustments are needed",
+      "A measurement of team velocity during agile sprints",
+      "A review of stakeholder satisfaction scores conducted annually"
+    ],
+    answer: 1,
+    explanation: "Manage Business Analysis Performance involves monitoring the quality and effectiveness of BA work and making adjustments when activities are not producing the needed outcomes. It is a continuous, reflective process."
+  },
+  {
+    domain: "BA Planning & Monitoring",
+    text: "A business analyst is identifying stakeholders for a new initiative. Which of the following is MOST likely to be overlooked during stakeholder identification?",
+    options: [
+      "The project sponsor",
+      "The development team",
+      "Regulatory bodies and compliance teams",
+      "The business unit requesting the change"
+    ],
+    answer: 2,
+    explanation: "Regulatory bodies, compliance functions, and external oversight groups are commonly overlooked during initial stakeholder identification because they are not directly involved in the project but may impose constraints or approval requirements."
+  },
+  {
+    domain: "BA Planning & Monitoring",
+    text: "In the context of business analysis planning, what does 'governance' refer to?",
+    options: [
+      "The organizational hierarchy chart for the project",
+      "The process by which decisions are made, reviewed, and approved for BA work and requirements",
+      "The set of quality assurance tests applied to solution deliverables",
+      "The authority given to the business analyst to approve changes"
+    ],
+    answer: 1,
+    explanation: "Governance in BA planning refers to the decision-making processes and authorities: who reviews requirements, who has approval authority, how changes are managed, and how conflicts are escalated and resolved."
+  },
+  {
+    domain: "BA Planning & Monitoring",
+    text: "A business analyst is working in an adaptive (agile) environment. How does business analysis planning typically differ from a predictive approach?",
+    options: [
+      "Planning is done once at the start and not revisited",
+      "Planning is ongoing and evolves iteratively throughout the project",
+      "Planning is eliminated in favor of continuous stakeholder conversations",
+      "Planning is the sole responsibility of the product owner, not the BA"
+    ],
+    answer: 1,
+    explanation: "In adaptive environments, BA planning is iterative and responsive to change. Rather than a fixed upfront plan, the approach evolves sprint by sprint as the team learns more about the problem and solution."
+  },
+  {
+    domain: "BA Planning & Monitoring",
+    text: "Which input is required for the Plan Stakeholder Engagement task?",
+    options: [
+      "Stakeholder engagement plan from a previous project",
+      "Business analysis performance assessment",
+      "Business analysis approach and stakeholder list",
+      "Solution scope and acceptance criteria"
+    ],
+    answer: 2,
+    explanation: "Planning stakeholder engagement requires knowing the BA approach (which determines how engagement will occur) and the list of identified stakeholders (who needs to be engaged). These are primary inputs per BABOK."
+  },
+  {
+    domain: "BA Planning & Monitoring",
+    text: "A business analyst needs to estimate the time required for elicitation activities. Which factor would have the LEAST impact on this estimate?",
+    options: [
+      "The number and availability of key stakeholders",
+      "The complexity of the domain and problem space",
+      "The color scheme of the requirements documentation template",
+      "The BA's experience with similar projects"
+    ],
+    answer: 2,
+    explanation: "Documentation template aesthetics have no bearing on elicitation effort. Estimation should consider stakeholder availability, domain complexity, experience level, and the number of requirements to be uncovered."
+  },
+
+  // ── ELICITATION & COLLABORATION (10–18) ──
+  {
+    domain: "Elicitation & Collaboration",
+    text: "During a workshop, a business analyst notices that one dominant stakeholder is influencing others to agree with their views, causing quieter participants to withhold their perspectives. What technique would BEST address this?",
+    options: [
+      "End the workshop and reschedule one-on-one interviews",
+      "Use a structured technique such as brainwriting or nominal group technique to allow independent input",
+      "Ask the dominant stakeholder to leave the session",
+      "Issue a survey to all participants after the workshop"
+    ],
+    answer: 1,
+    explanation: "Techniques like brainwriting (written idea generation) and Nominal Group Technique (independent voting/ranking) neutralize dominant personalities by allowing all participants to contribute independently before group discussion."
+  },
+  {
+    domain: "Elicitation & Collaboration",
+    text: "Which of the following BEST describes the difference between elicitation and requirements gathering?",
+    options: [
+      "They are synonymous; both terms describe the same activity",
+      "Elicitation is passive collection of documents; gathering is active interview-based",
+      "Elicitation is an active, investigative process that draws out tacit knowledge; gathering implies simply collecting what stakeholders readily provide",
+      "Gathering applies to business requirements; elicitation applies to technical requirements"
+    ],
+    answer: 2,
+    explanation: "Elicitation is an active, investigative process. Stakeholders often cannot articulate all of their needs, so a BA uses techniques to draw out tacit, assumed, and unstated needs—not merely collect what is volunteered."
+  },
+  {
+    domain: "Elicitation & Collaboration",
+    text: "A business analyst conducts an observation session by watching a customer service representative handle calls without participating. What elicitation technique is being used?",
+    options: [
+      "Passive observation",
+      "Simulation",
+      "Job shadowing with active participation",
+      "Focus group"
+    ],
+    answer: 0,
+    explanation: "Passive observation (also called 'invisible observation') involves watching work being performed without interacting with or influencing the subject. It is ideal for understanding actual current-state processes."
+  },
+  {
+    domain: "Elicitation & Collaboration",
+    text: "Which of the following is the PRIMARY output of the Prepare for Elicitation task?",
+    options: [
+      "A list of confirmed requirements ready for sign-off",
+      "An elicitation plan that includes the schedule, techniques, and materials needed",
+      "A stakeholder register with contact information",
+      "A gap analysis comparing current and desired states"
+    ],
+    answer: 1,
+    explanation: "The Prepare for Elicitation task produces a plan for each elicitation activity, including the objective, technique to be used, supporting materials, questions or scenarios, and logistics. This preparation maximizes session effectiveness."
+  },
+  {
+    domain: "Elicitation & Collaboration",
+    text: "A business analyst wants to understand unspoken needs and emotional drivers behind a stakeholder request. Which elicitation technique is MOST appropriate?",
+    options: [
+      "Document analysis",
+      "Survey / questionnaire",
+      "Interviews with open-ended questions",
+      "Benchmarking"
+    ],
+    answer: 2,
+    explanation: "Open-ended interviews allow a BA to probe beyond stated needs and surface tacit or emotional motivations. Follow-up probing questions reveal deeper insights that surveys or document analysis cannot capture."
+  },
+  {
+    domain: "Elicitation & Collaboration",
+    text: "After completing an elicitation session, what is the MOST important next step?",
+    options: [
+      "Immediately present the findings to the project sponsor",
+      "Confirm and document the results while the information is fresh, then validate with participants",
+      "Begin writing formal requirements based on session notes",
+      "Schedule the next elicitation activity"
+    ],
+    answer: 1,
+    explanation: "Confirm Elicitation Results involves reviewing session notes to ensure accuracy and completeness, then sharing them with participants to validate that the information was captured correctly before moving on."
+  },
+  {
+    domain: "Elicitation & Collaboration",
+    text: "A business analyst uses a technique where stakeholders are presented with an unfinished concept—such as a screen mockup—to stimulate feedback and discussion. What technique is this?",
+    options: [
+      "Benchmarking",
+      "Prototyping",
+      "Document analysis",
+      "Interface analysis"
+    ],
+    answer: 1,
+    explanation: "Prototyping creates a partial or simulated version of a solution to elicit concrete feedback. Because stakeholders often find it easier to react than to generate requirements from scratch, prototypes are powerful discovery tools."
+  },
+  {
+    domain: "Elicitation & Collaboration",
+    text: "Which of the following is NOT a recognized elicitation technique in the BABOK® Guide v3?",
+    options: [
+      "Mind mapping",
+      "Focus groups",
+      "Cost-benefit analysis",
+      "Collaborative games"
+    ],
+    answer: 2,
+    explanation: "Cost-benefit analysis is an analytical technique used to evaluate alternatives, not an elicitation technique. Mind mapping, focus groups, and collaborative games are all listed elicitation techniques in BABOK v3."
+  },
+  {
+    domain: "Elicitation & Collaboration",
+    text: "During elicitation, a stakeholder says: 'The system should be easy to use.' How should a business analyst BEST respond?",
+    options: [
+      "Accept the statement and document it as a requirement",
+      "Probe further to understand what 'easy to use' means in observable, measurable terms",
+      "Classify it as a non-functional requirement and pass it to the UX team",
+      "Reject the statement as too vague to be a valid requirement"
+    ],
+    answer: 1,
+    explanation: "Vague quality statements must be decomposed into specific, measurable criteria. A BA should probe: 'What would tell you the system is easy to use? What would make it difficult?' This surfaces testable acceptance criteria."
+  },
+
+  // ── REQUIREMENTS LIFE CYCLE MANAGEMENT (19–27) ──
+  {
+    domain: "Requirements Life Cycle Mgmt",
+    text: "A business analyst is documenting a link between a business requirement and its related stakeholder requirements. What is this relationship called?",
+    options: [
+      "Requirements dependency",
+      "Traceability",
+      "Requirements baseline",
+      "Allocation"
+    ],
+    answer: 1,
+    explanation: "Traceability is the documented relationship between requirements and other artifacts—such as business goals, stakeholder needs, design components, and test cases. It enables impact analysis and verification of completeness."
+  },
+  {
+    domain: "Requirements Life Cycle Mgmt",
+    text: "During requirements management, a stakeholder requests a change to an approved requirement. What should the business analyst do FIRST?",
+    options: [
+      "Reject the change to protect the project scope",
+      "Update the requirement immediately in the repository",
+      "Assess the impact of the change on related requirements, design, and project plans",
+      "Escalate the request directly to the project sponsor without analysis"
+    ],
+    answer: 2,
+    explanation: "Before accepting, rejecting, or escalating a change request, the BA must first assess its impact: what other requirements are affected, what design elements need updating, and what the cost or schedule implications might be."
+  },
+  {
+    domain: "Requirements Life Cycle Mgmt",
+    text: "What is the purpose of maintaining a requirements traceability matrix?",
+    options: [
+      "To assign ownership of each requirement to a specific stakeholder",
+      "To ensure requirements can be linked forward to design and test artifacts and backward to business goals",
+      "To track the number of requirements approved per sprint",
+      "To replace the need for a requirements management tool"
+    ],
+    answer: 1,
+    explanation: "A traceability matrix maps requirements bidirectionally: forward to tests, design, and solution components, and backward to business goals and needs. This enables completeness verification and impact analysis when changes occur."
+  },
+  {
+    domain: "Requirements Life Cycle Mgmt",
+    text: "Which of the following BEST describes 'requirements prioritization'?",
+    options: [
+      "The process of numbering requirements for organizational reference",
+      "The process of determining the relative importance and order of implementation for requirements",
+      "A technique used exclusively in agile projects",
+      "The formal sign-off process for approved requirements"
+    ],
+    answer: 1,
+    explanation: "Prioritization determines which requirements deliver the most value relative to cost and risk, and in what order they should be addressed. It applies in all methodologies and helps ensure limited resources are directed most effectively."
+  },
+  {
+    domain: "Requirements Life Cycle Mgmt",
+    text: "A business analyst has a large set of requirements and needs to prioritize them. The team wants a technique that factors in both the value of a requirement and the cost to implement it. Which technique is MOST appropriate?",
+    options: [
+      "MoSCoW (Must/Should/Could/Won't)",
+      "Timeboxing",
+      "Weighted ranking or scoring model",
+      "Delphi technique"
+    ],
+    answer: 2,
+    explanation: "A weighted ranking model scores requirements on multiple dimensions—value, cost, risk, dependency—then ranks them by composite score. This allows explicit tradeoff analysis between benefit and effort."
+  },
+  {
+    domain: "Requirements Life Cycle Mgmt",
+    text: "What does 'maintaining requirements' involve in the context of the BABOK® Guide?",
+    options: [
+      "Keeping requirements in a single document format throughout the project",
+      "Ensuring requirements remain accurate, consistent, and accessible as the project evolves",
+      "Preventing any changes to requirements once they are approved",
+      "Archiving requirements after the project is complete"
+    ],
+    answer: 1,
+    explanation: "Maintaining requirements is an ongoing activity ensuring the requirements remain accurate, up to date, consistent with other artifacts, and accessible. It encompasses versioning, updating relationships, and managing the repository."
+  },
+  {
+    domain: "Requirements Life Cycle Mgmt",
+    text: "A stakeholder and a developer disagree about the interpretation of a requirement. What is the MOST appropriate role for a business analyst in this situation?",
+    options: [
+      "Side with the stakeholder, who is the customer",
+      "Side with the developer, who must implement the solution",
+      "Facilitate a discussion to clarify the requirement and resolve the ambiguity",
+      "Escalate the disagreement to the project manager to resolve"
+    ],
+    answer: 2,
+    explanation: "BAs serve as communication bridges. When conflicts arise from ambiguous requirements, the BA's role is to facilitate clarification—returning to the original intent of the requirement and helping both parties reach shared understanding."
+  },
+  {
+    domain: "Requirements Life Cycle Mgmt",
+    text: "Which of the following is an example of a requirements dependency?",
+    options: [
+      "A requirement that must be implemented before another requirement can be meaningful",
+      "A requirement assigned to a specific development team member",
+      "A requirement that exceeds the project budget",
+      "A requirement written in passive voice"
+    ],
+    answer: 0,
+    explanation: "A dependency exists when one requirement relies on another being implemented first (e.g., 'User must be logged in before viewing account details'). Identifying dependencies is essential for sequencing and planning."
+  },
+  {
+    domain: "Requirements Life Cycle Mgmt",
+    text: "At what point in the requirements life cycle is requirements approval TYPICALLY obtained?",
+    options: [
+      "Only at the very beginning of the project during initiation",
+      "After requirements have been elicited, analyzed, and verified as complete and accurate",
+      "After the solution has been fully developed and tested",
+      "Approval is not required; requirements are always provisional"
+    ],
+    answer: 1,
+    explanation: "Approval is sought after requirements have been elicited and analyzed—when they are believed to be complete, consistent, and accurate. Approval signals stakeholder sign-off and authorizes the solution team to proceed."
+  },
+
+  // ── STRATEGY ANALYSIS (28–36) ──
+  {
+    domain: "Strategy Analysis",
+    text: "A business analyst is tasked with understanding why the organization wants to undertake a particular initiative. Which task in Strategy Analysis is MOST relevant?",
+    options: [
+      "Define Change Strategy",
+      "Analyze Current State",
+      "Define Future State",
+      "Assess Risks"
+    ],
+    answer: 1,
+    explanation: "Analyze Current State establishes the baseline—the existing organization, capabilities, processes, and context—so the business need and opportunity can be properly understood before defining where the organization wants to go."
+  },
+  {
+    domain: "Strategy Analysis",
+    text: "Which of the following BEST describes a 'business need'?",
+    options: [
+      "A functional requirement expressed by a subject matter expert",
+      "A problem or opportunity of sufficient importance to the organization to justify investment",
+      "A financial target set by the executive leadership team",
+      "A technical constraint imposed by the IT architecture"
+    ],
+    answer: 1,
+    explanation: "A business need is the motivation for change—a problem to be solved or an opportunity to be captured that justifies the investment of resources. It is distinct from a solution or a requirement."
+  },
+  {
+    domain: "Strategy Analysis",
+    text: "A business analyst is describing the boundary of what a solution will and will not address. What is this called?",
+    options: [
+      "Business case",
+      "Project charter",
+      "Solution scope",
+      "Stakeholder register"
+    ],
+    answer: 2,
+    explanation: "Solution scope defines the boundary of what the solution will include and exclude—the features, functions, and outcomes it will deliver—as distinct from project scope, which defines the work to be done."
+  },
+  {
+    domain: "Strategy Analysis",
+    text: "Which analysis tool is BEST suited for understanding an organization's internal strengths and weaknesses alongside external opportunities and threats?",
+    options: [
+      "PESTLE analysis",
+      "SWOT analysis",
+      "Root cause analysis",
+      "Force field analysis"
+    ],
+    answer: 1,
+    explanation: "SWOT analysis (Strengths, Weaknesses, Opportunities, Threats) explicitly examines both internal factors (strengths/weaknesses) and external factors (opportunities/threats) to inform strategy."
+  },
+  {
+    domain: "Strategy Analysis",
+    text: "A business analyst is working on a Define Future State task. Which of the following is the PRIMARY outcome of this task?",
+    options: [
+      "A detailed project schedule",
+      "A description of the desired outcome including capabilities needed and success metrics",
+      "A finalized list of solution requirements",
+      "A risk register for the proposed solution"
+    ],
+    answer: 1,
+    explanation: "The Define Future State task produces a description of where the organization wants to be: required capabilities, expected outcomes, and how success will be measured—providing the target for the change initiative."
+  },
+  {
+    domain: "Strategy Analysis",
+    text: "A company notices that customer complaints about order processing have increased by 40% over the past year. Before recommending a solution, what should a business analyst do FIRST?",
+    options: [
+      "Recommend a new order management system immediately",
+      "Conduct a root cause analysis to understand the underlying cause of the complaints",
+      "Survey customers to determine which features they want in a new system",
+      "Benchmark competitors to see how they handle order processing"
+    ],
+    answer: 1,
+    explanation: "Understanding root causes before proposing solutions is fundamental to good BA practice. The 40% increase in complaints is a symptom; the BA must identify causes—process gaps, system failures, staffing issues—before the right solution can be determined."
+  },
+  {
+    domain: "Strategy Analysis",
+    text: "What does a gap analysis compare?",
+    options: [
+      "The project budget against actual spend",
+      "The current state capabilities against the desired future state capabilities",
+      "The stakeholder requirements against the technical specifications",
+      "The planned schedule against the actual delivery timeline"
+    ],
+    answer: 1,
+    explanation: "Gap analysis identifies the difference between where an organization is today (current state) and where it needs to be (future state). The gaps represent what must be addressed by the change initiative."
+  },
+  {
+    domain: "Strategy Analysis",
+    text: "A business analyst is assessing whether to build, buy, or outsource a solution. Which Strategy Analysis task does this BEST align with?",
+    options: [
+      "Analyze Current State",
+      "Assess Risks",
+      "Define Change Strategy",
+      "Define Future State"
+    ],
+    answer: 2,
+    explanation: "Define Change Strategy involves identifying and evaluating the approach for achieving the future state, including options such as build vs. buy, phasing, resource models, and transition approaches."
+  },
+  {
+    domain: "Strategy Analysis",
+    text: "Which of the following is an example of a Key Performance Indicator (KPI) that would belong in a Future State definition?",
+    options: [
+      "The number of requirements approved in the first sprint",
+      "The average call resolution time reduced from 8 minutes to 3 minutes within 6 months",
+      "The number of developers assigned to the project",
+      "The list of features included in the minimum viable product"
+    ],
+    answer: 1,
+    explanation: "A KPI for the future state is a measurable, time-bound outcome: reducing call resolution time from 8 to 3 minutes is a specific, observable success metric that defines what the future state looks like when achieved."
+  },
+
+  // ── REQUIREMENTS ANALYSIS & DESIGN DEFINITION (37–44) ──
+  {
+    domain: "Req. Analysis & Design Def.",
+    text: "A business analyst is using a use case diagram to model interactions between a system and its users. What does an 'actor' represent in this context?",
+    options: [
+      "A developer who builds the system feature",
+      "Any role, person, or external system that interacts with the solution",
+      "A functional requirement decomposed from a business need",
+      "A test scenario used to validate system behavior"
+    ],
+    answer: 1,
+    explanation: "In use case modeling, an actor is any role—human user, external system, or organization—that interacts with the system being modeled. Actors are external to the solution and trigger or respond to system behaviors."
+  },
+  {
+    domain: "Req. Analysis & Design Def.",
+    text: "Which of the following BEST differentiates a business requirement from a stakeholder requirement?",
+    options: [
+      "Business requirements are written by analysts; stakeholder requirements are written by developers",
+      "Business requirements describe high-level needs of the organization; stakeholder requirements describe the needs of specific stakeholder groups relative to the solution",
+      "Business requirements are functional; stakeholder requirements are non-functional",
+      "There is no meaningful difference between the two"
+    ],
+    answer: 1,
+    explanation: "Business requirements describe why the organization is undertaking the change—the outcomes needed at the enterprise level. Stakeholder requirements refine this by describing what particular groups need from the solution to achieve those outcomes."
+  },
+  {
+    domain: "Req. Analysis & Design Def.",
+    text: "A business analyst is verifying requirements. What characteristic is being checked when a BA ensures that each requirement contains only one testable statement?",
+    options: [
+      "Completeness",
+      "Atomicity",
+      "Consistency",
+      "Feasibility"
+    ],
+    answer: 1,
+    explanation: "Atomicity means each requirement expresses exactly one discrete need—it cannot be split into independent parts. Atomic requirements are individually testable and prevent ambiguity about whether a combined statement has been fully met."
+  },
+  {
+    domain: "Req. Analysis & Design Def.",
+    text: "During requirements analysis, a business analyst discovers two requirements that cannot both be implemented without contradicting each other. What quality characteristic is violated?",
+    options: [
+      "Atomicity",
+      "Completeness",
+      "Consistency",
+      "Conciseness"
+    ],
+    answer: 2,
+    explanation: "Consistency means requirements do not contradict each other. When two requirements conflict—so that satisfying one means violating the other—consistency is violated and the conflict must be resolved before proceeding."
+  },
+  {
+    domain: "Req. Analysis & Design Def.",
+    text: "Which modeling notation is MOST commonly used to represent the sequence of steps in a business process, including decision points and parallel flows?",
+    options: [
+      "Entity-relationship diagram (ERD)",
+      "Context diagram",
+      "Business process model (BPMN) or activity diagram",
+      "Data flow diagram (DFD)"
+    ],
+    answer: 2,
+    explanation: "BPMN (Business Process Model and Notation) and UML activity diagrams are both designed to model process flows with decision gateways, parallel paths, events, and sequence. They are the standard notations for business process modeling."
+  },
+  {
+    domain: "Req. Analysis & Design Def.",
+    text: "A business analyst is evaluating two solution options. One option fully meets all requirements but costs significantly more. What analytical technique is MOST appropriate for comparing the options?",
+    options: [
+      "Root cause analysis",
+      "Decision analysis",
+      "Force field analysis",
+      "Gap analysis"
+    ],
+    answer: 1,
+    explanation: "Decision analysis evaluates options against defined criteria (cost, risk, feasibility, value) using structured techniques like decision tables, weighted scoring, or cost-benefit analysis to support objective comparisons."
+  },
+  {
+    domain: "Req. Analysis & Design Def.",
+    text: "Which of the following is an example of a non-functional requirement?",
+    options: [
+      "The system shall allow users to reset their password via email",
+      "The system shall process a payment transaction within 2 seconds under normal load",
+      "The system shall display an error message when an invalid account number is entered",
+      "The system shall generate a monthly summary report"
+    ],
+    answer: 1,
+    explanation: "Non-functional requirements describe system qualities—performance, security, scalability, availability—rather than behaviors. A 2-second transaction processing time is a performance quality requirement, not a functional behavior."
+  },
+  {
+    domain: "Req. Analysis & Design Def.",
+    text: "When should a business analyst validate requirements with stakeholders?",
+    options: [
+      "Only after the solution has been fully developed",
+      "Only at the beginning of the project during discovery",
+      "Continuously throughout the BA process to confirm requirements align with stakeholder needs and business value",
+      "Once, immediately after elicitation, and never again"
+    ],
+    answer: 2,
+    explanation: "Validation—confirming that requirements will deliver the intended business value—should occur continuously. Business needs evolve, stakeholders refine their understanding, and requirements must be checked at multiple points to remain aligned."
+  },
+
+  // ── SOLUTION EVALUATION (45–50) ──
+  {
+    domain: "Solution Evaluation",
+    text: "A new system has been deployed and is being used in production. A business analyst is measuring whether it has achieved the intended business outcomes. What activity is being performed?",
+    options: [
+      "Requirements validation",
+      "Measure solution performance",
+      "Define future state",
+      "Assess enterprise readiness"
+    ],
+    answer: 1,
+    explanation: "Measure Solution Performance involves collecting and analyzing data after deployment to determine whether the solution is achieving its intended outcomes and delivering the expected business value."
+  },
+  {
+    domain: "Solution Evaluation",
+    text: "A solution has been in production for six months. Users report that the system works correctly but the expected business benefits have not materialized. What should the business analyst investigate FIRST?",
+    options: [
+      "Whether the solution has any technical defects",
+      "Whether the implementation team followed the requirements correctly",
+      "Whether organizational, process, or behavioral factors outside the solution are preventing benefit realization",
+      "Whether the budget for the project was adequate"
+    ],
+    answer: 2,
+    explanation: "When a technically correct solution fails to deliver expected value, the cause is often external to the technology: inadequate training, unchanged processes, low adoption, or misaligned incentives. These organizational factors must be investigated."
+  },
+  {
+    domain: "Solution Evaluation",
+    text: "What is the purpose of an 'enterprise limitation' in the context of solution evaluation?",
+    options: [
+      "A technical constraint identified during architecture review",
+      "A factor within the organization that limits the solution's ability to deliver its full potential value",
+      "A legal restriction on deploying software in certain regions",
+      "A budget cap imposed on the project by finance"
+    ],
+    answer: 1,
+    explanation: "Enterprise limitations are internal organizational factors—poor processes, skill gaps, culture, governance structures—that reduce the value a solution can deliver, even when the solution itself is technically sound."
+  },
+  {
+    domain: "Solution Evaluation",
+    text: "During solution evaluation, a business analyst discovers that the solution is delivering value but less than originally anticipated. What should the BA recommend?",
+    options: [
+      "Immediately decommission the solution and start over",
+      "Accept the lower value as the new target and close the evaluation",
+      "Investigate the gap between expected and actual value and recommend improvements or corrective actions",
+      "Escalate to the project sponsor without further analysis"
+    ],
+    answer: 2,
+    explanation: "When a value gap is identified, the BA's role is to investigate root causes and recommend actions—whether solution enhancements, process changes, additional training, or scope adjustments—to close the gap."
+  },
+  {
+    domain: "Solution Evaluation",
+    text: "A business analyst is assessing the readiness of the organization to adopt a new solution. Which of the following factors would MOST likely be examined?",
+    options: [
+      "The number of lines of code in the solution",
+      "Stakeholder ability and willingness to use the new solution effectively",
+      "The vendor's financial stability",
+      "The solution's compliance with open-source licensing"
+    ],
+    answer: 1,
+    explanation: "Organizational readiness assessment examines whether impacted stakeholders have the knowledge, skills, motivation, and support structures needed to successfully adopt and use the solution to realize its intended benefits."
+  },
+  {
+    domain: "Solution Evaluation",
+    text: "Which of the following BEST describes the relationship between solution evaluation and the overall BA knowledge areas?",
+    options: [
+      "Solution evaluation is the final step and has no connection to earlier BA activities",
+      "Solution evaluation is only relevant for IT projects",
+      "Solution evaluation closes the loop by assessing whether the change delivered value, informing future strategy and BA planning",
+      "Solution evaluation replaces the need for requirements validation"
+    ],
+    answer: 2,
+    explanation: "Solution evaluation is a feedback mechanism that links back to strategy—did the change achieve the business outcomes? Lessons learned from evaluation inform future BA approaches, strategy decisions, and improvement efforts."
+  }
+];
+
+// ── STATE ──
+let current = 0;
+let answers = new Array(questions.length).fill(null);
+let revealed = new Array(questions.length).fill(false);
+let timerInterval = null;
+let secondsLeft = TOTAL_SECONDS;
+let examSubmitted = false;
+let allAttempts = [];
+let reviewingAttemptIndex = null;
+
+// ── HELPERS ──
+function shortDomain(name) {
+  return name.replace('Requirements ', 'Req. ').replace(' Management', ' Mgmt').replace('Business Analysis ', 'BA ');
+}
+function domainColor(pct) {
+  return pct >= 75 ? 'var(--correct)' : pct >= 60 ? 'var(--accent)' : 'var(--wrong)';
+}
+
+// ── INIT ──
+async function init() {
+  try {
+    const result = await window.storage.get('ecba-attempts');
+    if (result && result.value) {
+      allAttempts = JSON.parse(result.value);
+      if (allAttempts.length > 0) renderHistory();
+    }
+  } catch(e) { /* no history yet */ }
+}
+
+function renderHistory() {
+  const section = document.getElementById('history-section');
+  const list = document.getElementById('history-list');
+  const startBtn = document.getElementById('start-btn-row');
+
+  const bestPct = Math.max(...allAttempts.map(a => a.pct));
+
+  list.innerHTML = [...allAttempts].reverse().map((attempt, revIdx) => {
+    const origIdx = allAttempts.length - 1 - revIdx;
+    const pass = attempt.pct >= 75;
+    const isBest = attempt.pct === bestPct;
+    const dateStr = new Date(attempt.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    const domainPills = Object.entries(attempt.domains).map(([name, d]) => {
+      const dpct = Math.round(d.correct / d.total * 100);
+      const color = domainColor(dpct);
+      return `<span class="adp" style="background:rgba(0,0,0,0.25);border:1px solid ${color};color:${color}">${shortDomain(name)}: ${dpct}%</span>`;
+    }).join('');
+
+    return `<div class="attempt-row ${isBest ? 'best' : ''}" onclick="reviewAttempt(${origIdx})">
+      <div class="attempt-num">#${origIdx + 1}</div>
+      <div class="attempt-score ${pass ? 'pass' : 'fail'}">${attempt.pct}%</div>
+      <div class="attempt-details">
+        <div class="attempt-date">${dateStr} · ${attempt.correct}/${attempt.total} correct</div>
+        <div class="attempt-domain-pills">${domainPills}</div>
+      </div>
+      <div class="attempt-actions">
+        <div class="attempt-time">${attempt.timeStr}</div>
+        ${isBest ? '<div class="best-badge">BEST</div>' : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  section.classList.add('show');
+  startBtn.style.display = 'none';
+}
+
+function reviewAttempt(idx) {
+  const attempt = allAttempts[idx];
+  if (!attempt) return;
+  reviewingAttemptIndex = idx;
+  answers = attempt.answers.slice();
+  examSubmitted = true;
+  document.getElementById('start-screen').style.display = 'none';
+  showResults(attempt.timeStr, idx + 1);
+}
+
+async function clearHistory() {
+  if (!confirm('Clear all attempt history?')) return;
+  try {
+    await window.storage.delete('ecba-attempts');
+    allAttempts = [];
+    document.getElementById('history-section').classList.remove('show');
+    document.getElementById('start-btn-row').style.display = '';
+  } catch(e) { console.error(e); }
+}
+
+async function saveAttempt(correct, pct, timeStr, domains) {
+  const attempt = {
+    correct, total: questions.length, pct, timeStr, domains,
+    date: Date.now(), answers: answers.slice()
+  };
+  allAttempts.push(attempt);
+  try {
+    await window.storage.set('ecba-attempts', JSON.stringify(allAttempts));
+  } catch(e) { console.error('Could not save attempt:', e); }
+}
+
+function startExam() {
+  current = 0;
+  answers = new Array(questions.length).fill(null);
+  revealed = new Array(questions.length).fill(false);
+  examSubmitted = false;
+  secondsLeft = TOTAL_SECONDS;
+  reviewingAttemptIndex = null;
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('exam-screen').style.display = 'block';
+  buildNavDots();
+  renderQuestion();
+  updateTimerDisplay();
+  startTimer();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    secondsLeft--;
+    updateTimerDisplay();
+    if (secondsLeft <= 0) { clearInterval(timerInterval); submitExam(); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(secondsLeft / 60);
+  const s = secondsLeft % 60;
+  const display = document.getElementById('timer');
+  const bar = document.getElementById('timer-bar');
+  display.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  display.classList.toggle('warning', secondsLeft < 300);
+  bar.style.width = (secondsLeft / TOTAL_SECONDS * 100) + '%';
+  bar.style.background = secondsLeft < 300 ? 'var(--wrong)' : 'var(--accent)';
+}
+
+function buildNavDots() {
+  const container = document.getElementById('nav-dots');
+  container.innerHTML = '';
+  questions.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot';
+    dot.textContent = i + 1;
+    dot.id = `dot-${i}`;
+    dot.onclick = () => goToQ(i);
+    container.appendChild(dot);
+  });
+  updateNavDots();
+}
+
+function updateNavDots() {
+  questions.forEach((_, i) => {
+    const dot = document.getElementById(`dot-${i}`);
+    if (dot) dot.className = 'nav-dot' + (i === current ? ' active' : '') + (answers[i] !== null ? ' answered' : '');
+  });
+}
+
+function renderQuestion() {
+  const q = questions[current];
+  const area = document.getElementById('question-area');
+  const rev = revealed[current];
+
+  let optHtml = q.options.map((opt, i) => {
+    let cls = 'option';
+    if (examSubmitted || rev) {
+      cls += ' disabled';
+      if (i === q.answer) cls += ' correct';
+      else if (i === answers[current] && i !== q.answer) cls += ' wrong';
+    } else {
+      if (answers[current] === i) cls += ' selected';
+    }
+    return `<div class="${cls}" onclick="selectOption(${i})">
+      <div class="opt-letter">${String.fromCharCode(65+i)}.</div>
+      <div class="opt-text">${opt}</div>
+    </div>`;
+  }).join('');
+
+  const showExpl = examSubmitted || rev;
+  area.innerHTML = `
+    <div class="question-card">
+      <div class="q-meta">
+        <span class="q-number">Q${current+1} of ${questions.length}</span>
+        <span class="q-domain">${q.domain}</span>
+      </div>
+      <div class="q-text">${q.text}</div>
+      <div class="options">${optHtml}</div>
+      <div class="explanation ${showExpl ? 'show' : ''}">
+        <div class="explanation-label">Explanation</div>
+        <div class="explanation-text">${q.explanation}</div>
+      </div>
+    </div>`;
+
+  const answered_count = answers.filter(a => a !== null).length;
+  document.getElementById('progress-fill').style.width = (answered_count / questions.length * 100) + '%';
+  document.getElementById('progress-text').textContent = `${answered_count} / ${questions.length}`;
+
+  document.getElementById('btn-prev').style.display = current === 0 ? 'none' : '';
+  const isLast = current === questions.length - 1;
+  document.getElementById('btn-next').style.display = isLast ? 'none' : '';
+  document.getElementById('btn-submit').style.display = isLast ? '' : 'none';
+
+  updateNavDots();
+}
+
+function selectOption(i) {
+  if (examSubmitted || revealed[current]) return;
+  answers[current] = i;
+  renderQuestion();
+}
+
+function nextQ() { if (current < questions.length - 1) { current++; renderQuestion(); } }
+function prevQ() { if (current > 0) { current--; renderQuestion(); } }
+function goToQ(i) { current = i; renderQuestion(); }
+
+async function submitExam() {
+  if (examSubmitted) return;
+  clearInterval(timerInterval);
+  examSubmitted = true;
+  const elapsed = TOTAL_SECONDS - secondsLeft;
+  const mm = Math.floor(elapsed / 60);
+  const ss = elapsed % 60;
+  const timeStr = `${mm}m ${String(ss).padStart(2,'0')}s`;
+
+  let correct = 0;
+  answers.forEach((a, i) => { if (a === questions[i].answer) correct++; });
+  const pct = Math.round(correct / questions.length * 100);
+  const domains = {};
+  questions.forEach((q, i) => {
+    if (!domains[q.domain]) domains[q.domain] = { correct: 0, total: 0 };
+    domains[q.domain].total++;
+    if (answers[i] === q.answer) domains[q.domain].correct++;
+  });
+
+  await saveAttempt(correct, pct, timeStr, domains);
+  showResults(timeStr, allAttempts.length);
+}
+
+function showResults(timeStr, attemptNum) {
+  document.getElementById('exam-screen').style.display = 'none';
+  document.getElementById('results-screen').style.display = 'block';
+
+  let correct = 0;
+  answers.forEach((a, i) => { if (a === questions[i].answer) correct++; });
+  const pct = Math.round(correct / questions.length * 100);
+  const pass = pct >= 75;
+
+  const circle = document.getElementById('score-circle');
+  circle.textContent = pct + '%';
+  circle.className = 'score-circle ' + (pass ? 'pass' : 'fail');
+
+  document.getElementById('result-headline').textContent = pass ? '🎉 Practice Pass!' : '📚 Keep Studying';
+  document.getElementById('result-sub').textContent =
+    `You answered ${correct} of ${questions.length} correctly (${pct}%). ` +
+    (pass ? 'You\'re on track for the ECBA — keep it up!' : 'Review the explanations to target your weak areas.');
+
+  const timeLine = document.getElementById('result-time');
+  const parts = [];
+  if (timeStr) parts.push(`⏱ ${timeStr}`);
+  if (attemptNum) parts.push(`Attempt #${attemptNum}`);
+  timeLine.textContent = parts.join(' · ');
+
+  const domains = {};
+  questions.forEach((q, i) => {
+    if (!domains[q.domain]) domains[q.domain] = { correct: 0, total: 0 };
+    domains[q.domain].total++;
+    if (answers[i] === q.answer) domains[q.domain].correct++;
+  });
+
+  let html = '';
+  for (const [name, data] of Object.entries(domains)) {
+    const dpct = Math.round(data.correct / data.total * 100);
+    const color = domainColor(dpct);
+    html += `<div class="domain-row">
+      <div class="domain-name">${name}</div>
+      <div class="domain-bar-track"><div class="domain-bar-fill" style="width:${dpct}%;background:${color}"></div></div>
+      <div class="domain-score-txt">${data.correct}/${data.total}</div>
+    </div>`;
+  }
+  document.getElementById('domain-bars').innerHTML = html;
+  document.getElementById('review-section').style.display = 'none';
+}
+
+function showReview() {
+  const section = document.getElementById('review-section');
+  section.style.display = section.style.display === 'none' ? 'block' : 'none';
+  if (section.style.display === 'none') return;
+
+  let html = '';
+  questions.forEach((q, i) => {
+    const userAns = answers[i];
+    const isCorrect = userAns === q.answer;
+    html += `<div class="review-card ${isCorrect ? 'r-correct' : 'r-wrong'}">
+      <div class="review-meta">
+        <span class="review-q-num">Q${i+1}</span>
+        <span class="review-status ${isCorrect ? 'correct-badge' : 'wrong-badge'}">${isCorrect ? 'Correct' : 'Incorrect'}</span>
+        <span class="q-domain" style="font-size:9px">${q.domain}</span>
+      </div>
+      <div class="review-q-text">${q.text}</div>
+      <div class="review-answers">
+        ${!isCorrect ? `<span style="color:var(--wrong)">Your answer:</span> ${userAns !== null ? q.options[userAns] : 'Unanswered'}<br>` : ''}
+        <span style="color:var(--correct)">Correct answer:</span> ${q.options[q.answer]}
+      </div>
+      <div class="review-expl">${q.explanation}</div>
+    </div>`;
+  });
+  document.getElementById('review-cards').innerHTML = html;
+}
+
+function retakeExam() {
+  document.getElementById('results-screen').style.display = 'none';
+  document.getElementById('start-screen').style.display = 'block';
+  renderHistory();
+}
+
+init();
+</script>
+</body>
+</html>
