@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -67,141 +68,188 @@
     margin-bottom: 28px;
   }
 
-  /* ── TOOL CARDS ── */
-  .tools { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+/* ── TOOL CARDS ── */
+.tools { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
 
-  .tool-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    transition: all 0.15s;
-    cursor: default;
-  }
-  .tool-icon {
-    font-size: 24px;
-    flex-shrink: 0;
-    width: 40px;
-    text-align: center;
-  }
-  .tool-info { flex: 1; }
-  .tool-name {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 3px;
-  }
-  .tool-desc {
-    font-size: 12px;
-    color: var(--text-dim);
-    font-weight: 300;
-    line-height: 1.5;
-    margin-bottom: 8px;
-  }
-  .tool-cmd {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-    user-select: none;
-  }
-  .tool-cmd:hover { border-color: var(--accent2); }
-  .tool-cmd:active { transform: scale(0.98); }
-  .tool-cmd-text {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--accent2);
-  }
-  .tool-cmd-copy {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    color: var(--text-dim);
-    letter-spacing: 0.08em;
-  }
-  .tool-cmd.copied .tool-cmd-copy { color: var(--correct); }
+.tool-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 18px 20px;
+display: flex;
+align-items: center;
+gap: 16px;
+transition: all 0.15s;
+cursor: default;
+}
+.tool-icon {
+font-size: 24px;
+flex-shrink: 0;
+width: 40px;
+text-align: center;
+}
+.tool-info { flex: 1; }
+.tool-name {
+font-size: 14px;
+font-weight: 600;
+margin-bottom: 3px;
+}
+.tool-desc {
+font-size: 12px;
+color: var(–text-dim);
+font-weight: 300;
+line-height: 1.5;
+margin-bottom: 8px;
+}
+.tool-cmd {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+background: var(–surface2);
+border: 1px solid var(–border);
+border-radius: 6px;
+padding: 5px 10px;
+cursor: pointer;
+transition: all 0.15s;
+user-select: none;
+}
+.tool-cmd:hover { border-color: var(–accent2); }
+.tool-cmd:active { transform: scale(0.98); }
+.tool-cmd-text {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+color: var(–accent2);
+}
+.tool-cmd-copy {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+color: var(–text-dim);
+letter-spacing: 0.08em;
+}
+.tool-cmd.copied .tool-cmd-copy { color: var(–correct); }
 
-  /* ── SCORE TRACKER ── */
-  .score-section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 16px;
-  }
-  .section-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-  .score-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .score-row:last-child { border-bottom: none; }
-  .score-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--text-dim);
-    width: 20px;
-  }
-  .score-val {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 18px;
-    font-weight: 500;
-    width: 52px;
-  }
-  .score-val.pass { color: var(--correct); }
-  .score-val.fail { color: var(--wrong); }
-  .score-meta { font-size: 12px; color: var(--text-dim); font-weight: 300; flex: 1; }
-  .score-empty {
-    font-size: 12px;
-    color: var(--text-dim);
-    font-weight: 300;
-    font-style: italic;
-    padding: 4px 0;
-  }
+/* ── SCORE TRACKER ── */
+.score-section {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 20px;
+margin-bottom: 16px;
+}
+.section-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 0.15em;
+color: var(–text-dim);
+text-transform: uppercase;
+margin-bottom: 14px;
+}
+.score-row {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 8px 0;
+border-bottom: 1px solid var(–border);
+}
+.score-row:last-child { border-bottom: none; }
+.score-num {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+color: var(–text-dim);
+width: 20px;
+}
+.score-val {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 18px;
+font-weight: 500;
+width: 52px;
+}
+.score-val.pass { color: var(–correct); }
+.score-val.fail { color: var(–wrong); }
+.score-meta { font-size: 12px; color: var(–text-dim); font-weight: 300; flex: 1; }
+.score-empty {
+font-size: 12px;
+color: var(–text-dim);
+font-weight: 300;
+font-style: italic;
+padding: 4px 0;
+}
 
-  /* ── TARGET ── */
-  .target-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(232,184,75,0.05);
-    border: 1px solid rgba(232,184,75,0.15);
-    border-radius: 10px;
-    padding: 14px 18px;
-  }
-  .target-label { font-size: 12px; color: var(--text-dim); font-weight: 300; }
-  .target-date {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--accent);
-    font-weight: 500;
-  }
-  .days-left {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--text-dim);
-    margin-top: 2px;
-    text-align: right;
-  }
+/* ── TARGET ── */
+.target-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+background: rgba(232,184,75,0.05);
+border: 1px solid rgba(232,184,75,0.15);
+border-radius: 10px;
+padding: 14px 18px;
+}
+.target-label { font-size: 12px; color: var(–text-dim); font-weight: 300; }
+.target-date {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 13px;
+color: var(–accent);
+font-weight: 500;
+}
+.days-left {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+color: var(–text-dim);
+margin-top: 2px;
+text-align: right;
+}
+/* ── SITE NAV ── */
+.site-nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+background: rgba(14,17,23,0.92);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid var(–border);
+display: flex;
+align-items: center;
+padding: 0 24px;
+height: 44px;
+gap: 4px;
+}
+.site-nav-brand {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.15em;
+color: var(–accent);
+text-decoration: none;
+text-transform: uppercase;
+margin-right: 16px;
+white-space: nowrap;
+}
+.site-nav-link {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.08em;
+color: var(–text-dim);
+text-decoration: none;
+padding: 6px 12px;
+border-radius: 6px;
+transition: all 0.15s;
+white-space: nowrap;
+}
+.site-nav-link:hover { color: var(–text); background: var(–surface2); }
+.site-nav-link.active { color: var(–text); background: var(–surface2); border: 1px solid var(–border); }
+.site-nav-spacer { flex: 1; }
 </style>
+
 </head>
 <body>
-<div class="hub">
+<nav class="site-nav">
+  <a class="site-nav-brand" href="index.html">ECBA Prep</a>
+  <a class="site-nav-link active" href="index.html">Hub</a>
+  <a class="site-nav-link" href="exam.html">Exam</a>
+  <a class="site-nav-link" href="study-guide.html">Study Guide</a>
+  <div class="site-nav-spacer"></div>
+  <a class="site-nav-link" href="about.html">About</a>
+</nav>
+<div class="hub" style="padding-top:44px">
   <div class="hub-label">IIBA · ECBA</div>
   <div class="hub-title">Prep Hub</div>
   <div class="hub-sub">Quick access to all your study tools. Click any command to copy it, then paste into the chat.</div>
@@ -219,29 +267,32 @@
       </div>
     </div>
 
-    <div class="tool-card">
-      <div class="tool-icon">📖</div>
-      <div class="tool-info">
-        <div class="tool-name">Study Guide</div>
-        <div class="tool-desc">All 6 BABOK v3 Knowledge Areas · Tap techniques for definitions</div>
-        <div class="tool-cmd" onclick="copyCmd(this, 'show me the study guide')">
-          <span class="tool-cmd-text">show me the study guide</span>
-          <span class="tool-cmd-copy">COPY</span>
-        </div>
-      </div>
+```
+<div class="tool-card">
+  <div class="tool-icon">📖</div>
+  <div class="tool-info">
+    <div class="tool-name">Study Guide</div>
+    <div class="tool-desc">All 6 BABOK v3 Knowledge Areas · Tap techniques for definitions</div>
+    <div class="tool-cmd" onclick="copyCmd(this, 'show me the study guide')">
+      <span class="tool-cmd-text">show me the study guide</span>
+      <span class="tool-cmd-copy">COPY</span>
     </div>
+  </div>
+</div>
 
-    <div class="tool-card">
-      <div class="tool-icon">🔄</div>
-      <div class="tool-info">
-        <div class="tool-name">New Exam Version</div>
-        <div class="tool-desc">Fresh 50-question set · No repeated questions from previous versions</div>
-        <div class="tool-cmd" onclick="copyCmd(this, 'generate a new exam version')">
-          <span class="tool-cmd-text">generate a new exam version</span>
-          <span class="tool-cmd-copy">COPY</span>
-        </div>
-      </div>
+<div class="tool-card">
+  <div class="tool-icon">🔄</div>
+  <div class="tool-info">
+    <div class="tool-name">New Exam Version</div>
+    <div class="tool-desc">Fresh 50-question set · No repeated questions from previous versions</div>
+    <div class="tool-cmd" onclick="copyCmd(this, 'generate a new exam version')">
+      <span class="tool-cmd-text">generate a new exam version</span>
+      <span class="tool-cmd-copy">COPY</span>
     </div>
+  </div>
+</div>
+```
+
   </div>
 
   <div class="score-section">
@@ -313,5 +364,6 @@ async function loadHistory() {
 
 loadHistory();
 </script>
+
 </body>
 </html>
