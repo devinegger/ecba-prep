@@ -2,9 +2,12 @@
 
 A suite of interactive study tools for the IIBA Entry Certificate in Business Analysis (ECBA) certification. Built as single-file HTML applications — no dependencies, no build step, just open and run.
 
+Co-developed by a human candidate and [Claude (Anthropic)](https://anthropic.com) through conversational iteration.
+
 ## Tools
 
 ### 📋 Mock Exam (`exam.html`)
+
 A full-length 50-question practice exam modeled on the IIBA ECBA certification format.
 
 - 60-minute countdown timer
@@ -12,47 +15,66 @@ A full-length 50-question practice exam modeled on the IIBA ECBA certification f
 - Navigate freely between questions during the exam
 - Detailed answer review with explanations after submission
 - Performance breakdown by Knowledge Area
-- Color-coded scoring: green (75%+), yellow (60–74%), red (below 60%)
+- Full attempt history saved across sessions
 
 ### 📖 Study Guide (`study-guide.html`)
+
 An interactive reference covering all six BABOK® v3 Knowledge Areas.
 
 - Sidebar navigation between Knowledge Areas
 - Core tasks, key techniques, and exam tips per area
 - Tap any technique pill to reveal its definition inline
 - Key terms glossary per Knowledge Area
-- The four requirement types explained (Business, Stakeholder, Solution, Transition)
 
 ### 🗂 Prep Hub (`index.html`)
-A quick-access dashboard linking to all tools.
 
-- One-tap copy for common commands
+Quick-access dashboard — the landing page.
+
+- Live attempt history
 - Countdown to exam target date
+- Navigation to all tools
+
+### ℹ️ About (`about.html`)
+
+Project background, tool descriptions, co-development credit, and full tech stack.
 
 ## Knowledge Areas Covered
 
 1. Business Analysis Planning & Monitoring
-2. Elicitation & Collaboration
-3. Requirements Life Cycle Management
-4. Strategy Analysis
-5. Requirements Analysis & Design Definition
-6. Solution Evaluation
+1. Elicitation & Collaboration
+1. Requirements Life Cycle Management
+1. Strategy Analysis
+1. Requirements Analysis & Design Definition
+1. Solution Evaluation
+
+## Tech Stack
+
+|Tool                                       |Role                                            |
+|-------------------------------------------|------------------------------------------------|
+|[Claude (Anthropic)](https://anthropic.com)|AI pair programmer — all code, content, and copy|
+|[GitHub](https://github.com)               |Version control                                 |
+|[Vercel](https://vercel.com)               |Hosting & auto-deploy                           |
+|[Notion](https://notion.so)                |Study log & project docs (connected via MCP)    |
+|[Cursor](https://cursor.sh)                |AI-powered local code editor                    |
+|Pure HTML/CSS/JS                           |No frameworks, no build tools                   |
+
+## Deploy to Vercel
+
+1. Fork or clone this repo
+1. Connect to [Vercel](https://vercel.com) — select **“Other”** as the framework preset
+1. Leave build command and output directory blank
+1. Deploy — `index.html` serves as the landing page automatically
+
+The included `vercel.json` provides clean URLs: `/exam` and `/study-guide`.
 
 ## About the ECBA
 
-The ECBA (Entry Certificate in Business Analysis) is the entry-level certification offered by the [International Institute of Business Analysis (IIBA)](https://www.iiba.org). It is based on the BABOK® Guide v3 and is designed for those beginning a career in business analysis.
+The ECBA (Entry Certificate in Business Analysis) is the entry-level certification offered by the [International Institute of Business Analysis (IIBA)](https://www.iiba.org), based on the BABOK® Guide v3.
 
-- **Format:** 50 multiple choice questions
-- **Time:** 60 minutes
+- **Format:** 50 multiple choice questions · 60 minutes
 - **Delivery:** Pearson VUE (online or test center)
 - **Target score:** 75%+ (community consensus — official passing score not disclosed by IIBA)
 
-## Tech
+-----
 
-Pure HTML, CSS, and JavaScript. No frameworks, no build tools, no dependencies. Each file is fully self-contained and runs directly in any modern browser.
-
-Fonts loaded from Google Fonts (IBM Plex Sans, IBM Plex Mono, Libre Baskerville).
-
----
-
-*Questions content based on BABOK® Guide v3. Not affiliated with or endorsed by IIBA.*
+*Not affiliated with or endorsed by IIBA. BABOK® is a registered trademark of the International Institute of Business Analysis.*
