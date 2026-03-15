@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECBA Prep Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1117;
+    --surface: #161b27;
+    --surface2: #1d2436;
+    --border: #2a3347;
+    --accent: #e8b84b;
+    --accent2: #5b8dee;
+    --text: #e8eaf0;
+    --text-dim: #8892a4;
+    --correct: #3ecf8e;
+    --wrong: #f06b6b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(91,141,238,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91,141,238,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hub {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 520px;
+  }
+  .hub-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .hub-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .hub-sub {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  /* ── TOOL CARDS ── */
+  .tools { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+
+  .tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.15s;
+    cursor: default;
+  }
+  .tool-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    width: 40px;
+    text-align: center;
+  }
+  .tool-info { flex: 1; }
+  .tool-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .tool-desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .tool-cmd {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .tool-cmd:hover { border-color: var(--accent2); }
+  .tool-cmd:active { transform: scale(0.98); }
+  .tool-cmd-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent2);
+  }
+  .tool-cmd-copy {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+  .tool-cmd.copied .tool-cmd-copy { color: var(--correct); }
+
+  /* ── SCORE TRACKER ── */
+  .score-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .score-row:last-child { border-bottom: none; }
+  .score-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    width: 20px;
+  }
+  .score-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    width: 52px;
+  }
+  .score-val.pass { color: var(--correct); }
+  .score-val.fail { color: var(--wrong); }
+  .score-meta { font-size: 12px; color: var(--text-dim); font-weight: 300; flex: 1; }
+  .score-empty {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 300;
+    font-style: italic;
+    padding: 4px 0;
+  }
+
+  /* ── TARGET ── */
+  .target-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(232,184,75,0.05);
+    border: 1px solid rgba(232,184,75,0.15);
+    border-radius: 10px;
+    padding: 14px 18px;
+  }
+  .target-label { font-size: 12px; color: var(--text-dim); font-weight: 300; }
+  .target-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .days-left {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 2px;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+<div class="hub">
+  <div class="hub-label">IIBA · ECBA</div>
+  <div class="hub-title">Prep Hub</div>
+  <div class="hub-sub">Quick access to all your study tools. Click any command to copy it, then paste into the chat.</div>
+
+  <div class="tools">
+    <div class="tool-card">
+      <div class="tool-icon">📋</div>
+      <div class="tool-info">
+        <div class="tool-name">Mock Exam</div>
+        <div class="tool-desc">50 questions · 60 min · Full attempt history saved across sessions</div>
+        <div class="tool-cmd" onclick="copyCmd(this, 'show me the mock exam')">
+          <span class="tool-cmd-text">show me the mock exam</span>
+          <span class="tool-cmd-copy">COPY</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">📖</div>
+      <div class="tool-info">
+        <div class="tool-name">Study Guide</div>
+        <div class="tool-desc">All 6 BABOK v3 Knowledge Areas · Tap techniques for definitions</div>
+        <div class="tool-cmd" onclick="copyCmd(this, 'show me the study guide')">
+          <span class="tool-cmd-text">show me the study guide</span>
+          <span class="tool-cmd-copy">COPY</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">🔄</div>
+      <div class="tool-info">
+        <div class="tool-name">New Exam Version</div>
+        <div class="tool-desc">Fresh 50-question set · No repeated questions from previous versions</div>
+        <div class="tool-cmd" onclick="copyCmd(this, 'generate a new exam version')">
+          <span class="tool-cmd-text">generate a new exam version</span>
+          <span class="tool-cmd-copy">COPY</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="score-section">
+    <div class="section-label">Attempt History</div>
+    <div id="score-list">
+      <div class="score-empty">Loading from storage...</div>
+    </div>
+  </div>
+
+  <div class="target-row">
+    <div>
+      <div class="target-label">Exam Target</div>
+    </div>
+    <div>
+      <div class="target-date">End of March 2026</div>
+      <div class="days-left" id="days-left"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function copyCmd(el, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    el.querySelector('.tool-cmd-copy').textContent = 'COPIED ✓';
+    setTimeout(() => {
+      el.classList.remove('copied');
+      el.querySelector('.tool-cmd-copy').textContent = 'COPY';
+    }, 1800);
+  });
+}
+
+// Days until end of March 2026
+const target = new Date('2026-03-31');
+const today = new Date();
+const days = Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+const daysEl = document.getElementById('days-left');
+if (days > 0) daysEl.textContent = days + ' days away';
+else if (days === 0) daysEl.textContent = 'Today!';
+else daysEl.textContent = Math.abs(days) + ' days ago';
+
+// Load attempt history from storage
+async function loadHistory() {
+  const list = document.getElementById('score-list');
+  try {
+    const result = await window.storage.get('ecba-attempts');
+    if (result && result.value) {
+      const attempts = JSON.parse(result.value);
+      if (attempts.length === 0) throw new Error('empty');
+      const best = Math.max(...attempts.map(a => a.pct));
+      list.innerHTML = attempts.slice().reverse().map((a, ri) => {
+        const origIdx = attempts.length - 1 - ri;
+        const pass = a.pct >= 75;
+        const isBest = a.pct === best;
+        const date = new Date(a.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        return `<div class="score-row">
+          <div class="score-num">#${origIdx + 1}</div>
+          <div class="score-val ${pass ? 'pass' : 'fail'}">${a.pct}%</div>
+          <div class="score-meta">${a.correct}/${a.total} · ${a.timeStr} · ${date}${isBest ? ' 🏆' : ''}</div>
+        </div>`;
+      }).join('');
+    } else {
+      list.innerHTML = '<div class="score-empty">No attempts yet — take the exam to see your history here.</div>';
+    }
+  } catch(e) {
+    list.innerHTML = '<div class="score-empty">No attempts yet — take the exam to see your history here.</div>';
+  }
+}
+
+loadHistory();
+</script>
+</body>
+</html>
