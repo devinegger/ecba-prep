@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -42,397 +43,447 @@
     z-index: 0;
   }
 
-  .layout { display: flex; min-height: 100vh; position: relative; z-index: 1; }
+.layout { display: flex; min-height: 100vh; position: relative; z-index: 1; }
 
-  /* ── SIDEBAR ── */
-  .sidebar {
-    width: 260px;
-    flex-shrink: 0;
-    background: var(--surface);
-    border-right: 1px solid var(--border);
-    padding: 28px 0;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-  }
-  .sidebar-logo {
-    padding: 0 22px 24px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 20px;
-  }
-  .sidebar-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .sidebar-title {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.2;
-  }
+/* ── SIDEBAR ── */
+.sidebar {
+width: 260px;
+flex-shrink: 0;
+background: var(–surface);
+border-right: 1px solid var(–border);
+padding: 28px 0;
+position: sticky;
+top: 0;
+height: 100vh;
+overflow-y: auto;
+}
+.sidebar-logo {
+padding: 0 22px 24px;
+border-bottom: 1px solid var(–border);
+margin-bottom: 20px;
+}
+.sidebar-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 0.2em;
+color: var(–accent);
+text-transform: uppercase;
+margin-bottom: 4px;
+}
+.sidebar-title {
+font-family: ‘Libre Baskerville’, serif;
+font-size: 18px;
+font-weight: 700;
+line-height: 1.2;
+}
 
-  .nav-section-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    padding: 0 22px;
-    margin-bottom: 8px;
-    margin-top: 16px;
-  }
-  .nav-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 22px;
-    cursor: pointer;
-    transition: background 0.15s;
-    border-left: 2px solid transparent;
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--text-dim);
-  }
-  .nav-item:hover { background: var(--surface2); color: var(--text); }
-  .nav-item.active { border-left-color: var(--accent); background: rgba(232,184,75,0.06); color: var(--text); }
-  .nav-dot {
-    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-  }
+.nav-section-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 0.15em;
+color: var(–text-dim);
+text-transform: uppercase;
+padding: 0 22px;
+margin-bottom: 8px;
+margin-top: 16px;
+}
+.nav-item {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 9px 22px;
+cursor: pointer;
+transition: background 0.15s;
+border-left: 2px solid transparent;
+font-size: 13px;
+font-weight: 300;
+color: var(–text-dim);
+}
+.nav-item:hover { background: var(–surface2); color: var(–text); }
+.nav-item.active { border-left-color: var(–accent); background: rgba(232,184,75,0.06); color: var(–text); }
+.nav-dot {
+width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
 
-  /* ── MAIN ── */
-  .main { flex: 1; padding: 40px 48px 80px; max-width: 860px; }
+/* ── MAIN ── */
+.main { flex: 1; padding: 40px 48px 80px; max-width: 860px; }
 
-  .page { display: none; }
-  .page.active { display: block; animation: fadeUp 0.3s ease; }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+.page { display: none; }
+.page.active { display: block; animation: fadeUp 0.3s ease; }
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
 
-  /* ── OVERVIEW PAGE ── */
-  .overview-hero {
-    margin-bottom: 40px;
-  }
-  .hero-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .hero-title {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 1.15;
-    margin-bottom: 14px;
-  }
-  .hero-sub {
-    font-size: 15px;
-    color: var(--text-dim);
-    line-height: 1.65;
-    font-weight: 300;
-    max-width: 560px;
-  }
+/* ── OVERVIEW PAGE ── */
+.overview-hero {
+margin-bottom: 40px;
+}
+.hero-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.2em;
+color: var(–accent);
+text-transform: uppercase;
+margin-bottom: 8px;
+}
+.hero-title {
+font-family: ‘Libre Baskerville’, serif;
+font-size: 36px;
+font-weight: 700;
+line-height: 1.15;
+margin-bottom: 14px;
+}
+.hero-sub {
+font-size: 15px;
+color: var(–text-dim);
+line-height: 1.65;
+font-weight: 300;
+max-width: 560px;
+}
 
-  .overview-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-  .overview-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    cursor: pointer;
-    transition: all 0.15s;
-    border-top: 3px solid;
-  }
-  .overview-card:hover { transform: translateY(-2px); background: var(--surface2); }
-  .oc-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--text-dim);
-    margin-bottom: 8px;
-  }
-  .oc-name {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 14px;
-    line-height: 1.4;
-    margin-bottom: 10px;
-  }
-  .oc-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-  .oc-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    padding: 2px 7px;
-    border-radius: 3px;
-    background: var(--surface2);
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
-  }
+.overview-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 16px;
+margin-bottom: 40px;
+}
+.overview-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 20px;
+cursor: pointer;
+transition: all 0.15s;
+border-top: 3px solid;
+}
+.overview-card:hover { transform: translateY(-2px); background: var(–surface2); }
+.oc-num {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+color: var(–text-dim);
+margin-bottom: 8px;
+}
+.oc-name {
+font-family: ‘Libre Baskerville’, serif;
+font-size: 14px;
+line-height: 1.4;
+margin-bottom: 10px;
+}
+.oc-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.oc-tag {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+padding: 2px 7px;
+border-radius: 3px;
+background: var(–surface2);
+color: var(–text-dim);
+letter-spacing: 0.05em;
+}
 
-  .exam-facts {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px;
-    margin-bottom: 32px;
-  }
-  .facts-title {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 18px;
-  }
-  .facts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .fact-item { }
-  .fact-label { font-size: 11px; color: var(--text-dim); font-weight: 300; margin-bottom: 3px; }
-  .fact-value { font-size: 14px; color: var(--text); font-weight: 500; }
+.exam-facts {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 28px;
+margin-bottom: 32px;
+}
+.facts-title {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.15em;
+color: var(–text-dim);
+text-transform: uppercase;
+margin-bottom: 18px;
+}
+.facts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.fact-item { }
+.fact-label { font-size: 11px; color: var(–text-dim); font-weight: 300; margin-bottom: 3px; }
+.fact-value { font-size: 14px; color: var(–text); font-weight: 500; }
 
-  .req-types {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px;
-  }
-  .req-row {
-    display: flex;
-    gap: 14px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-    align-items: flex-start;
-  }
-  .req-row:last-child { border-bottom: none; }
-  .req-type-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.08em;
-    padding: 3px 9px;
-    border-radius: 4px;
-    white-space: nowrap;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .req-desc { font-size: 13.5px; color: var(--text-dim); line-height: 1.55; font-weight: 300; }
-  .req-example { font-style: italic; color: var(--text-dim); opacity: 0.7; }
+.req-types {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 28px;
+}
+.req-row {
+display: flex;
+gap: 14px;
+padding: 12px 0;
+border-bottom: 1px solid var(–border);
+align-items: flex-start;
+}
+.req-row:last-child { border-bottom: none; }
+.req-type-badge {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 0.08em;
+padding: 3px 9px;
+border-radius: 4px;
+white-space: nowrap;
+flex-shrink: 0;
+margin-top: 2px;
+}
+.req-desc { font-size: 13.5px; color: var(–text-dim); line-height: 1.55; font-weight: 300; }
+.req-example { font-style: italic; color: var(–text-dim); opacity: 0.7; }
 
-  /* ── KNOWLEDGE AREA PAGE ── */
-  .ka-header {
-    margin-bottom: 32px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--border);
-  }
-  .ka-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .ka-title {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    line-height: 1.2;
-  }
-  .ka-desc {
-    font-size: 14.5px;
-    color: var(--text-dim);
-    line-height: 1.65;
-    font-weight: 300;
-    max-width: 580px;
-  }
+/* ── KNOWLEDGE AREA PAGE ── */
+.ka-header {
+margin-bottom: 32px;
+padding-bottom: 24px;
+border-bottom: 1px solid var(–border);
+}
+.ka-num {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.2em;
+color: var(–text-dim);
+text-transform: uppercase;
+margin-bottom: 6px;
+}
+.ka-title {
+font-family: ‘Libre Baskerville’, serif;
+font-size: 28px;
+font-weight: 700;
+margin-bottom: 10px;
+line-height: 1.2;
+}
+.ka-desc {
+font-size: 14.5px;
+color: var(–text-dim);
+line-height: 1.65;
+font-weight: 300;
+max-width: 580px;
+}
 
-  .tasks-section { margin-bottom: 36px; }
-  .section-title {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
+.tasks-section { margin-bottom: 36px; }
+.section-title {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.15em;
+color: var(–text-dim);
+text-transform: uppercase;
+margin-bottom: 14px;
+}
 
-  .task-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 18px 20px;
-    margin-bottom: 10px;
-  }
-  .task-name {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: var(--text);
-  }
-  .task-desc {
-    font-size: 13px;
-    color: var(--text-dim);
-    line-height: 1.6;
-    font-weight: 300;
-  }
+.task-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 10px;
+padding: 18px 20px;
+margin-bottom: 10px;
+}
+.task-name {
+font-size: 14px;
+font-weight: 600;
+margin-bottom: 6px;
+color: var(–text);
+}
+.task-desc {
+font-size: 13px;
+color: var(–text-dim);
+line-height: 1.6;
+font-weight: 300;
+}
 
-  .techniques-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 32px;
-  }
-  .tech-pill {
-    font-size: 12px;
-    padding: 6px 14px;
-    border-radius: 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    font-weight: 300;
-    transition: all 0.15s;
-    cursor: pointer;
-    user-select: none;
-  }
-  .tech-pill:hover { border-color: var(--accent2); color: var(--text); }
-  .tech-pill.active {
-    border-color: var(--accent2);
-    background: rgba(91,141,238,0.12);
-    color: var(--text);
-  }
+.techniques-grid {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+margin-bottom: 32px;
+}
+.tech-pill {
+font-size: 12px;
+padding: 6px 14px;
+border-radius: 20px;
+background: var(–surface);
+border: 1px solid var(–border);
+color: var(–text-dim);
+font-weight: 300;
+transition: all 0.15s;
+cursor: pointer;
+user-select: none;
+}
+.tech-pill:hover { border-color: var(–accent2); color: var(–text); }
+.tech-pill.active {
+border-color: var(–accent2);
+background: rgba(91,141,238,0.12);
+color: var(–text);
+}
 
-  .tech-def-box {
-    display: none;
-    margin-top: 4px;
-    margin-bottom: 24px;
-    padding: 16px 20px;
-    background: var(--surface2);
-    border: 1px solid var(--accent2);
-    border-radius: 10px;
-    animation: fadeUp 0.2s ease;
-  }
-  .tech-def-box.show { display: block; }
-  .tech-def-name {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--accent2);
-    margin-bottom: 6px;
-    letter-spacing: 0.05em;
-  }
-  .tech-def-text {
-    font-size: 13.5px;
-    color: var(--text-dim);
-    line-height: 1.6;
-    font-weight: 300;
-  }
+.tech-def-box {
+display: none;
+margin-top: 4px;
+margin-bottom: 24px;
+padding: 16px 20px;
+background: var(–surface2);
+border: 1px solid var(–accent2);
+border-radius: 10px;
+animation: fadeUp 0.2s ease;
+}
+.tech-def-box.show { display: block; }
+.tech-def-name {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+font-weight: 500;
+color: var(–accent2);
+margin-bottom: 6px;
+letter-spacing: 0.05em;
+}
+.tech-def-text {
+font-size: 13.5px;
+color: var(–text-dim);
+line-height: 1.6;
+font-weight: 300;
+}
 
-  .exam-tips {
-    background: rgba(232,184,75,0.05);
-    border: 1px solid rgba(232,184,75,0.2);
-    border-radius: 10px;
-    padding: 20px 22px;
-    margin-bottom: 32px;
-  }
-  .tips-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .tip-item {
-    font-size: 13px;
-    color: var(--text-dim);
-    line-height: 1.6;
-    font-weight: 300;
-    padding: 5px 0;
-    padding-left: 16px;
-    position: relative;
-  }
-  .tip-item::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-size: 11px;
-  }
+.exam-tips {
+background: rgba(232,184,75,0.05);
+border: 1px solid rgba(232,184,75,0.2);
+border-radius: 10px;
+padding: 20px 22px;
+margin-bottom: 32px;
+}
+.tips-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 0.15em;
+color: var(–accent);
+text-transform: uppercase;
+margin-bottom: 12px;
+}
+.tip-item {
+font-size: 13px;
+color: var(–text-dim);
+line-height: 1.6;
+font-weight: 300;
+padding: 5px 0;
+padding-left: 16px;
+position: relative;
+}
+.tip-item::before {
+content: ‘→’;
+position: absolute;
+left: 0;
+color: var(–accent);
+font-size: 11px;
+}
 
-  .key-terms { margin-bottom: 32px; }
-  .term-row {
-    display: flex;
-    gap: 16px;
-    padding: 11px 0;
-    border-bottom: 1px solid var(--border);
-    align-items: flex-start;
-  }
-  .term-row:last-child { border-bottom: none; }
-  .term-name {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--text);
-    width: 180px;
-    flex-shrink: 0;
-    padding-top: 2px;
-  }
-  .term-def { font-size: 13px; color: var(--text-dim); line-height: 1.55; font-weight: 300; }
+.key-terms { margin-bottom: 32px; }
+.term-row {
+display: flex;
+gap: 16px;
+padding: 11px 0;
+border-bottom: 1px solid var(–border);
+align-items: flex-start;
+}
+.term-row:last-child { border-bottom: none; }
+.term-name {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+font-weight: 500;
+color: var(–text);
+width: 180px;
+flex-shrink: 0;
+padding-top: 2px;
+}
+.term-def { font-size: 13px; color: var(–text-dim); line-height: 1.55; font-weight: 300; }
 
-  .io-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 32px; }
-  .io-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 18px;
-  }
-  .io-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    color: var(--text-dim);
-  }
-  .io-item {
-    font-size: 12.5px;
-    color: var(--text-dim);
-    padding: 4px 0;
-    font-weight: 300;
-    border-bottom: 1px solid var(--border);
-    line-height: 1.5;
-  }
-  .io-item:last-child { border-bottom: none; }
+.io-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 32px; }
+.io-box {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 10px;
+padding: 18px;
+}
+.io-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+margin-bottom: 12px;
+color: var(–text-dim);
+}
+.io-item {
+font-size: 12.5px;
+color: var(–text-dim);
+padding: 4px 0;
+font-weight: 300;
+border-bottom: 1px solid var(–border);
+line-height: 1.5;
+}
+.io-item:last-child { border-bottom: none; }
 
-  @media (max-width: 900px) {
-    .sidebar { width: 220px; }
-    .main { padding: 28px 24px 60px; }
-    .overview-grid { grid-template-columns: repeat(2, 1fr); }
-    .facts-grid { grid-template-columns: 1fr; }
-    .io-grid { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 640px) {
-    .layout { flex-direction: column; }
-    .sidebar { width: 100%; height: auto; position: static; overflow: visible; }
-    .overview-grid { grid-template-columns: 1fr; }
-    .hero-title { font-size: 26px; }
-  }
+@media (max-width: 900px) {
+.sidebar { width: 220px; }
+.main { padding: 28px 24px 60px; }
+.overview-grid { grid-template-columns: repeat(2, 1fr); }
+.facts-grid { grid-template-columns: 1fr; }
+.io-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+.layout { flex-direction: column; }
+.sidebar { width: 100%; height: auto; position: static; overflow: visible; }
+.overview-grid { grid-template-columns: 1fr; }
+.hero-title { font-size: 26px; }
+}
+
+/* ── SITE NAV ── */
+.site-nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+background: rgba(14,17,23,0.92);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid var(–border);
+display: flex;
+align-items: center;
+padding: 0 24px;
+height: 44px;
+gap: 4px;
+}
+.site-nav-brand {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.15em;
+color: var(–accent);
+text-decoration: none;
+text-transform: uppercase;
+margin-right: 16px;
+white-space: nowrap;
+}
+.site-nav-link {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.08em;
+color: var(–text-dim);
+text-decoration: none;
+padding: 6px 12px;
+border-radius: 6px;
+transition: all 0.15s;
+white-space: nowrap;
+}
+.site-nav-link:hover { color: var(–text); background: var(–surface2); }
+.site-nav-link.active { color: var(–text); background: var(–surface2); border: 1px solid var(–border); }
+.site-nav-spacer { flex: 1; }
+.layout { padding-top: 44px; }
 </style>
+
 </head>
 <body>
+<nav class="site-nav">
+  <a class="site-nav-brand" href="index.html">ECBA Prep</a>
+  <a class="site-nav-link" href="index.html">Hub</a>
+  <a class="site-nav-link" href="exam.html">Exam</a>
+  <a class="site-nav-link active" href="study-guide.html">Study Guide</a>
+  <div class="site-nav-spacer"></div>
+  <a class="site-nav-link" href="about.html">About</a>
+</nav>
 <div class="layout">
 
   <!-- ── SIDEBAR ── -->
+
   <nav class="sidebar">
     <div class="sidebar-logo">
       <div class="sidebar-label">ECBA · BABOK v3</div>
@@ -453,383 +504,386 @@
   </nav>
 
   <!-- ── MAIN ── -->
+
   <main class="main">
 
-    <!-- OVERVIEW -->
-    <div class="page active" id="page-overview">
-      <div class="overview-hero">
-        <div class="hero-label">IIBA Certification</div>
-        <div class="hero-title">ECBA Quick<br>Reference Guide</div>
-        <div class="hero-sub">Everything you need to know across all six BABOK® v3 Knowledge Areas. Click any card to dive into a Knowledge Area.</div>
-      </div>
+```
+<!-- OVERVIEW -->
+<div class="page active" id="page-overview">
+  <div class="overview-hero">
+    <div class="hero-label">IIBA Certification</div>
+    <div class="hero-title">ECBA Quick<br>Reference Guide</div>
+    <div class="hero-sub">Everything you need to know across all six BABOK® v3 Knowledge Areas. Click any card to dive into a Knowledge Area.</div>
+  </div>
 
-      <div class="overview-grid">
-        <div class="overview-card" style="border-top-color:var(--tag1)" onclick="showPage('ka1', document.querySelectorAll('.nav-item')[1])">
-          <div class="oc-num">KA 01</div>
-          <div class="oc-name">BA Planning & Monitoring</div>
-          <div class="oc-tags"><span class="oc-tag">Approach</span><span class="oc-tag">Stakeholders</span><span class="oc-tag">Governance</span></div>
-        </div>
-        <div class="overview-card" style="border-top-color:var(--tag2)" onclick="showPage('ka2', document.querySelectorAll('.nav-item')[2])">
-          <div class="oc-num">KA 02</div>
-          <div class="oc-name">Elicitation & Collaboration</div>
-          <div class="oc-tags"><span class="oc-tag">Interviews</span><span class="oc-tag">Workshops</span><span class="oc-tag">Observation</span></div>
-        </div>
-        <div class="overview-card" style="border-top-color:var(--tag3)" onclick="showPage('ka3', document.querySelectorAll('.nav-item')[3])">
-          <div class="oc-num">KA 03</div>
-          <div class="oc-name">Requirements Life Cycle Mgmt</div>
-          <div class="oc-tags"><span class="oc-tag">Traceability</span><span class="oc-tag">Prioritization</span><span class="oc-tag">Approval</span></div>
-        </div>
-        <div class="overview-card" style="border-top-color:var(--tag4)" onclick="showPage('ka4', document.querySelectorAll('.nav-item')[4])">
-          <div class="oc-num">KA 04</div>
-          <div class="oc-name">Strategy Analysis</div>
-          <div class="oc-tags"><span class="oc-tag">Current State</span><span class="oc-tag">Future State</span><span class="oc-tag">Gap Analysis</span></div>
-        </div>
-        <div class="overview-card" style="border-top-color:var(--tag5)" onclick="showPage('ka5', document.querySelectorAll('.nav-item')[5])">
-          <div class="oc-num">KA 05</div>
-          <div class="oc-name">Req. Analysis & Design Def.</div>
-          <div class="oc-tags"><span class="oc-tag">Models</span><span class="oc-tag">Verification</span><span class="oc-tag">Validation</span></div>
-        </div>
-        <div class="overview-card" style="border-top-color:var(--tag6)" onclick="showPage('ka6', document.querySelectorAll('.nav-item')[6])">
-          <div class="oc-num">KA 06</div>
-          <div class="oc-name">Solution Evaluation</div>
-          <div class="oc-tags"><span class="oc-tag">Performance</span><span class="oc-tag">Value</span><span class="oc-tag">Limitations</span></div>
-        </div>
-      </div>
-
-      <div class="exam-facts">
-        <div class="facts-title">Exam at a Glance</div>
-        <div class="facts-grid">
-          <div class="fact-item"><div class="fact-label">Questions</div><div class="fact-value">50 multiple choice</div></div>
-          <div class="fact-item"><div class="fact-label">Time Limit</div><div class="fact-value">60 minutes</div></div>
-          <div class="fact-item"><div class="fact-label">Passing Score</div><div class="fact-value">Not publicly disclosed — target 75%+</div></div>
-          <div class="fact-item"><div class="fact-label">Delivery</div><div class="fact-value">Pearson VUE (online or test center)</div></div>
-          <div class="fact-item"><div class="fact-label">Based On</div><div class="fact-value">BABOK® Guide v3</div></div>
-          <div class="fact-item"><div class="fact-label">Renewal</div><div class="fact-value">Every 3 years — 21 CDUs required</div></div>
-        </div>
-      </div>
-
-      <div class="req-types">
-        <div class="facts-title">The 4 Requirement Types — Know These Cold</div>
-        <div class="req-row">
-          <div class="req-type-badge" style="background:rgba(232,184,75,0.12);color:var(--tag1)">Business</div>
-          <div class="req-desc">High-level statements of goals, objectives, and outcomes the enterprise needs to achieve. The "why." <span class="req-example">Ex: Reduce customer churn by 15%.</span></div>
-        </div>
-        <div class="req-row">
-          <div class="req-type-badge" style="background:rgba(91,141,238,0.12);color:var(--tag2)">Stakeholder</div>
-          <div class="req-desc">Needs of a specific stakeholder group relative to the solution. The "what stakeholders need." <span class="req-example">Ex: Sales reps need to view customer history in one screen.</span></div>
-        </div>
-        <div class="req-row">
-          <div class="req-type-badge" style="background:rgba(62,207,142,0.12);color:var(--tag3)">Solution</div>
-          <div class="req-desc">Describes features and capabilities the solution must have. Split into <strong style="color:var(--text)">Functional</strong> (what it does) and <strong style="color:var(--text)">Non-Functional</strong> (how well it does it).</div>
-        </div>
-        <div class="req-row">
-          <div class="req-type-badge" style="background:rgba(199,125,255,0.12);color:var(--tag4)">Transition</div>
-          <div class="req-desc">Temporary capabilities needed only during transition from current to future state. <span class="req-example">Ex: Data migration script to move legacy records.</span></div>
-        </div>
-      </div>
+  <div class="overview-grid">
+    <div class="overview-card" style="border-top-color:var(--tag1)" onclick="showPage('ka1', document.querySelectorAll('.nav-item')[1])">
+      <div class="oc-num">KA 01</div>
+      <div class="oc-name">BA Planning & Monitoring</div>
+      <div class="oc-tags"><span class="oc-tag">Approach</span><span class="oc-tag">Stakeholders</span><span class="oc-tag">Governance</span></div>
     </div>
-
-    <!-- KA 1: BA PLANNING & MONITORING -->
-    <div class="page" id="page-ka1">
-      <div class="ka-header">
-        <div class="ka-num" style="color:var(--tag1)">Knowledge Area 01</div>
-        <div class="ka-title">Business Analysis<br>Planning & Monitoring</div>
-        <div class="ka-desc">Defines how BA work will be planned, organized, monitored, and governed throughout an initiative. Sets the stage for everything else.</div>
-      </div>
-
-      <div class="tasks-section">
-        <div class="section-title">Core Tasks</div>
-        <div class="task-card"><div class="task-name">Plan BA Approach</div><div class="task-desc">Defines the overall method—predictive, adaptive, or hybrid—and how BA work will be structured, sequenced, and performed.</div></div>
-        <div class="task-card"><div class="task-name">Plan Stakeholder Engagement</div><div class="task-desc">Identifies who the stakeholders are, analyzes their needs and influence, and determines how to effectively engage each group.</div></div>
-        <div class="task-card"><div class="task-name">Plan BA Governance</div><div class="task-desc">Establishes decision-making processes: who approves requirements, how changes are managed, and how conflicts are escalated.</div></div>
-        <div class="task-card"><div class="task-name">Plan Information Management</div><div class="task-desc">Determines how requirements and BA artifacts will be stored, organized, accessed, and maintained throughout the project.</div></div>
-        <div class="task-card"><div class="task-name">Identify BA Performance Improvements</div><div class="task-desc">Continuously assesses BA activities and outputs for effectiveness and makes adjustments to improve quality and efficiency.</div></div>
-      </div>
-
-      <div class="section-title">Key Techniques <span style="font-size:9px;color:var(--text-dim);letter-spacing:0.05em;font-family:'IBM Plex Sans',sans-serif;text-transform:none;font-weight:300">— tap any term to see its definition</span></div>
-      <div class="techniques-grid" data-group="ka1">
-        <span class="tech-pill" data-def="A group technique for generating a large number of ideas quickly without judgment, used to identify stakeholders, risks, or planning approaches.">Brainstorming</span>
-        <span class="tech-pill" data-def="Structured or unstructured one-on-one conversations to gather information, opinions, and context from individual stakeholders.">Interviews</span>
-        <span class="tech-pill" data-def="A review of past project experiences to identify what worked well and what should be improved, informing future BA planning and approach decisions.">Lessons Learned</span>
-        <span class="tech-pill" data-def="A visual diagram organizing information hierarchically around a central concept. Useful for decomposing topics, planning BA activities, and capturing stakeholder relationships.">Mind Mapping</span>
-        <span class="tech-pill" data-def="Describes roles, responsibilities, and reporting structures within an organization to understand context, authority, and stakeholder relationships.">Organizational Modelling</span>
-        <span class="tech-pill" data-def="Visual representation of how work is performed — showing steps, decisions, and flows — to understand current or future state processes and identify improvement opportunities.">Process Modelling</span>
-        <span class="tech-pill" data-def="Identifies and evaluates uncertainties that could affect the initiative, enabling the BA to plan appropriate responses and adjust the overall approach.">Risk Analysis</span>
-        <span class="tech-pill" data-def="A documented register and/or visual map of stakeholders categorized by their influence, interest, and relationship to the initiative — the foundation of stakeholder engagement planning.">Stakeholder List / Map</span>
-        <span class="tech-pill" data-def="Responsible, Accountable, Consulted, Informed — a matrix defining who does what across BA activities, decisions, and deliverables to clarify accountability.">RACI Matrix</span>
-      </div>
-      <div class="tech-def-box" id="def-ka1"><div class="tech-def-name" id="def-ka1-name"></div><div class="tech-def-text" id="def-ka1-text"></div></div>
-
-      <div class="exam-tips">
-        <div class="tips-label">Exam Tips</div>
-        <div class="tip-item">Know the difference between predictive (plan-driven) and adaptive (iterative) approaches and how BA planning differs between them.</div>
-        <div class="tip-item">Stakeholders with high influence require proactive management regardless of their level of interest.</div>
-        <div class="tip-item">Governance = decision-making authority + change control process. The BA doesn't own governance but facilitates it.</div>
-        <div class="tip-item">Performance improvement is ongoing and iterative — it's not a one-time review at project end.</div>
-      </div>
-
-      <div class="section-title" style="margin-bottom:14px">Key Terms</div>
-      <div class="key-terms">
-        <div class="term-row"><div class="term-name">BA Approach</div><div class="term-def">The overall methodology defining when, how, and what BA activities will be performed throughout the initiative.</div></div>
-        <div class="term-row"><div class="term-name">Governance</div><div class="term-def">Processes defining how decisions are made, who has authority, how changes are requested and approved, and how conflicts are resolved.</div></div>
-        <div class="term-row"><div class="term-name">Stakeholder Engagement</div><div class="term-def">The ongoing process of identifying, analyzing, and planning appropriate interaction with stakeholders based on their needs and influence.</div></div>
-        <div class="term-row"><div class="term-name">CDU</div><div class="term-def">Continuing Development Unit. Required for ECBA renewal (21 CDUs every 3 years) to demonstrate ongoing professional development.</div></div>
-      </div>
+    <div class="overview-card" style="border-top-color:var(--tag2)" onclick="showPage('ka2', document.querySelectorAll('.nav-item')[2])">
+      <div class="oc-num">KA 02</div>
+      <div class="oc-name">Elicitation & Collaboration</div>
+      <div class="oc-tags"><span class="oc-tag">Interviews</span><span class="oc-tag">Workshops</span><span class="oc-tag">Observation</span></div>
     </div>
-
-    <!-- KA 2: ELICITATION & COLLABORATION -->
-    <div class="page" id="page-ka2">
-      <div class="ka-header">
-        <div class="ka-num" style="color:var(--tag2)">Knowledge Area 02</div>
-        <div class="ka-title">Elicitation &<br>Collaboration</div>
-        <div class="ka-desc">The active process of drawing out, confirming, and communicating business analysis information. Elicitation is investigative — not just passive collection.</div>
-      </div>
-
-      <div class="tasks-section">
-        <div class="section-title">Core Tasks</div>
-        <div class="task-card"><div class="task-name">Prepare for Elicitation</div><div class="task-desc">Plans each elicitation activity: defines objectives, selects techniques, prepares questions/materials, and schedules participants.</div></div>
-        <div class="task-card"><div class="task-name">Conduct Elicitation</div><div class="task-desc">Executes the planned activity to draw out information from stakeholders. May reveal stated, unstated, and tacit needs.</div></div>
-        <div class="task-card"><div class="task-name">Confirm Elicitation Results</div><div class="task-desc">Reviews and validates that captured information is accurate and complete. Typically done by sharing notes back with participants.</div></div>
-        <div class="task-card"><div class="task-name">Communicate BA Information</div><div class="task-desc">Ensures the right information reaches the right stakeholders at the right time in a format appropriate to the audience.</div></div>
-        <div class="task-card"><div class="task-name">Manage Stakeholder Collaboration</div><div class="task-desc">Builds and maintains productive working relationships; manages conflict, participation, and buy-in throughout the initiative.</div></div>
-      </div>
-
-      <div class="section-title">Elicitation Techniques — Know All of These <span style="font-size:9px;color:var(--text-dim);letter-spacing:0.05em;font-family:'IBM Plex Sans',sans-serif;text-transform:none;font-weight:300">— tap any term</span></div>
-      <div class="techniques-grid" data-group="ka2">
-        <span class="tech-pill" data-def="Direct one-on-one conversations using open or closed questions to surface stated, unstated, and tacit needs. Best for probing deeply into individual perspectives and motivations.">Interviews</span>
-        <span class="tech-pill" data-def="Facilitated group sessions (Joint Application Design) bringing stakeholders together to collaboratively define, refine, and reach consensus on requirements in real time.">Workshops / JAD</span>
-        <span class="tech-pill" data-def="A moderated discussion with a selected group of representative users to explore shared attitudes, needs, and perceptions about a topic or proposed solution.">Focus Groups</span>
-        <span class="tech-pill" data-def="Watching users perform their actual work. Passive = watching without interacting (best for unfiltered reality). Active = participating alongside the subject (best for complex tasks).">Observation (Active &amp; Passive)</span>
-        <span class="tech-pill" data-def="Written questions distributed to a large audience to collect structured input efficiently. Best for breadth across many stakeholders — not depth. Great for validating or confirming findings.">Surveys / Questionnaires</span>
-        <span class="tech-pill" data-def="Creating a partial or simulated version of a solution (mockup, wireframe, demo) to elicit concrete feedback and surface requirements that stakeholders can't articulate from scratch.">Prototyping</span>
-        <span class="tech-pill" data-def="Reviewing existing materials — policies, reports, process manuals, org charts — to extract relevant information about the current state without requiring stakeholder time.">Document Analysis</span>
-        <span class="tech-pill" data-def="Examining touchpoints between systems or between humans and systems to identify integration points, data exchanges, and interface requirements at system boundaries.">Interface Analysis</span>
-        <span class="tech-pill" data-def="A group ideation technique for generating a high volume of ideas quickly with no criticism during generation. Used to surface stakeholder needs, risks, and options.">Brainstorming</span>
-        <span class="tech-pill" data-def="Structured activities (like Product Box, Speedboat, or Remember the Future) that engage stakeholders creatively, breaking down barriers to surface genuine needs and priorities.">Collaborative Games</span>
-        <span class="tech-pill" data-def="A visual tool for capturing and organizing elicitation outputs around a central topic, revealing relationships between ideas and highlighting gaps in coverage.">Mind Mapping</span>
-        <span class="tech-pill" data-def="Comparing organizational processes, features, or performance against industry peers or best practices to identify gaps, ground requirements in realistic expectations, and identify opportunities.">Benchmarking</span>
-      </div>
-      <div class="tech-def-box" id="def-ka2"><div class="tech-def-name" id="def-ka2-name"></div><div class="tech-def-text" id="def-ka2-text"></div></div>
-
-      <div class="exam-tips">
-        <div class="tips-label">Exam Tips</div>
-        <div class="tip-item">Elicitation ≠ requirements gathering. Elicitation actively surfaces tacit and unstated knowledge; gathering is passive.</div>
-        <div class="tip-item">Passive observation = watching without interacting. Active observation = participating alongside the user.</div>
-        <div class="tip-item">Vague statements ("user-friendly," "fast") must always be probed for measurable, specific meaning — never accepted as written.</div>
-        <div class="tip-item">Nominal Group Technique and brainwriting neutralize dominant personalities in group settings.</div>
-        <div class="tip-item">Confirm Elicitation Results comes BEFORE drafting formal requirements — accuracy first.</div>
-      </div>
-
-      <div class="section-title" style="margin-bottom:14px">Technique Selector</div>
-      <div class="key-terms">
-        <div class="term-row"><div class="term-name">Need tacit knowledge</div><div class="term-def">Open-ended interviews or observation — surface what stakeholders know but can't easily articulate.</div></div>
-        <div class="term-row"><div class="term-name">Large group input</div><div class="term-def">Surveys for breadth; workshops for depth and consensus.</div></div>
-        <div class="term-row"><div class="term-name">Stakeholder can't articulate needs</div><div class="term-def">Prototyping — give them something concrete to react to.</div></div>
-        <div class="term-row"><div class="term-name">Understand current process</div><div class="term-def">Observation or document analysis — see what actually happens, not just what's described.</div></div>
-        <div class="term-row"><div class="term-name">Dominant personality problem</div><div class="term-def">Brainwriting or Nominal Group Technique to capture independent perspectives.</div></div>
-      </div>
+    <div class="overview-card" style="border-top-color:var(--tag3)" onclick="showPage('ka3', document.querySelectorAll('.nav-item')[3])">
+      <div class="oc-num">KA 03</div>
+      <div class="oc-name">Requirements Life Cycle Mgmt</div>
+      <div class="oc-tags"><span class="oc-tag">Traceability</span><span class="oc-tag">Prioritization</span><span class="oc-tag">Approval</span></div>
     </div>
-
-    <!-- KA 3: REQUIREMENTS LIFE CYCLE MANAGEMENT -->
-    <div class="page" id="page-ka3">
-      <div class="ka-header">
-        <div class="ka-num" style="color:var(--tag3)">Knowledge Area 03</div>
-        <div class="ka-title">Requirements Life<br>Cycle Management</div>
-        <div class="ka-desc">Managing requirements from creation through retirement — ensuring they stay accurate, traceable, prioritized, and approved as the project evolves.</div>
-      </div>
-
-      <div class="tasks-section">
-        <div class="section-title">Core Tasks</div>
-        <div class="task-card"><div class="task-name">Trace Requirements</div><div class="task-desc">Documents relationships between requirements and related artifacts (goals, tests, design elements). Enables impact analysis.</div></div>
-        <div class="task-card"><div class="task-name">Maintain Requirements</div><div class="task-desc">Keeps requirements accurate, complete, consistent, and accessible as the initiative progresses and changes occur.</div></div>
-        <div class="task-card"><div class="task-name">Prioritize Requirements</div><div class="task-desc">Determines relative importance and implementation order based on value, cost, risk, and dependencies.</div></div>
-        <div class="task-card"><div class="task-name">Assess Requirements Changes</div><div class="task-desc">Evaluates the impact of proposed changes on related requirements, design components, and project plans before accepting.</div></div>
-        <div class="task-card"><div class="task-name">Approve Requirements</div><div class="task-desc">Obtains formal stakeholder sign-off that requirements are complete and accurate, authorizing the solution team to proceed.</div></div>
-      </div>
-
-      <div class="section-title">Prioritization Techniques <span style="font-size:9px;color:var(--text-dim);letter-spacing:0.05em;font-family:'IBM Plex Sans',sans-serif;text-transform:none;font-weight:300">— tap any term</span></div>
-      <div class="techniques-grid" data-group="ka3">
-        <span class="tech-pill" data-def="Must Have / Should Have / Could Have / Won't Have — a fast, collaborative technique categorizing requirements by necessity. 'Must Haves' are non-negotiable for the current delivery.">MoSCoW (Must/Should/Could/Won't)</span>
-        <span class="tech-pill" data-def="Assigns numerical weights to criteria (value, cost, risk, strategic alignment) and scores each requirement, producing an objective ranked list based on the composite score.">Weighted Ranking / Scoring</span>
-        <span class="tech-pill" data-def="Allocating a fixed time window to a set of work. Requirements that fit within the constraint are included; others are deferred to later iterations. Common in agile environments.">Timeboxing</span>
-        <span class="tech-pill" data-def="Group members allocate a set number of votes to requirements they value most. The distribution of votes surfaces collective priorities quickly without lengthy debate.">Voting / Dot Voting</span>
-        <span class="tech-pill" data-def="Stakeholders are given a fictional budget to 'purchase' features. Because they must make tradeoffs, the exercise reveals which requirements they actually value most — cutting through 'everything is important.'">Buy a Feature</span>
-        <span class="tech-pill" data-def="Iterative anonymous expert consensus technique. Experts independently estimate or rate; results are shared anonymously; the group converges over multiple rounds. Eliminates groupthink.">Delphi Technique</span>
-        <span class="tech-pill" data-def="Categorizes requirements by their impact on customer satisfaction: Basic (expected, causes dissatisfaction if absent), Performance (more = better), and Delight (unexpected but valued).">Kano Model</span>
-      </div>
-      <div class="tech-def-box" id="def-ka3"><div class="tech-def-name" id="def-ka3-name"></div><div class="tech-def-text" id="def-ka3-text"></div></div>
-
-      <div class="exam-tips">
-        <div class="tips-label">Exam Tips</div>
-        <div class="tip-item">Always assess impact BEFORE accepting or rejecting a change request — never update requirements first.</div>
-        <div class="tip-item">Traceability runs both directions: forward (to tests/design) and backward (to business goals).</div>
-        <div class="tip-item">Approval ≠ sign-off for the sake of it. It formally authorizes action and signals stakeholder confidence in the requirements.</div>
-        <div class="tip-item">When stakeholders conflict over a requirement, the BA facilitates — not arbitrates. Return to the business need.</div>
-        <div class="tip-item">MoSCoW is the most common prioritization technique on the exam. Know what each category means.</div>
-      </div>
-
-      <div class="section-title" style="margin-bottom:14px">Key Terms</div>
-      <div class="key-terms">
-        <div class="term-row"><div class="term-name">Traceability</div><div class="term-def">Documented relationships between requirements and other artifacts, enabling completeness checks and change impact analysis.</div></div>
-        <div class="term-row"><div class="term-name">Dependency</div><div class="term-def">A relationship where one requirement relies on another being implemented first for it to be meaningful.</div></div>
-        <div class="term-row"><div class="term-name">Baseline</div><div class="term-def">An approved, stable version of requirements at a point in time — the reference point for managing changes.</div></div>
-        <div class="term-row"><div class="term-name">MoSCoW</div><div class="term-def">Must Have / Should Have / Could Have / Won't Have. A simple prioritization framework for categorizing requirements by necessity.</div></div>
-      </div>
+    <div class="overview-card" style="border-top-color:var(--tag4)" onclick="showPage('ka4', document.querySelectorAll('.nav-item')[4])">
+      <div class="oc-num">KA 04</div>
+      <div class="oc-name">Strategy Analysis</div>
+      <div class="oc-tags"><span class="oc-tag">Current State</span><span class="oc-tag">Future State</span><span class="oc-tag">Gap Analysis</span></div>
     </div>
-
-    <!-- KA 4: STRATEGY ANALYSIS -->
-    <div class="page" id="page-ka4">
-      <div class="ka-header">
-        <div class="ka-num" style="color:var(--tag4)">Knowledge Area 04</div>
-        <div class="ka-title">Strategy<br>Analysis</div>
-        <div class="ka-desc">Understands why change is needed, what the future should look like, and how to get there. Bridges business context with solution direction.</div>
-      </div>
-
-      <div class="tasks-section">
-        <div class="section-title">Core Tasks</div>
-        <div class="task-card"><div class="task-name">Analyze Current State</div><div class="task-desc">Establishes the baseline: existing capabilities, processes, organizational context, and the business need or opportunity driving change.</div></div>
-        <div class="task-card"><div class="task-name">Define Future State</div><div class="task-desc">Describes the desired outcomes: required capabilities, organizational changes, KPIs, and what success looks like.</div></div>
-        <div class="task-card"><div class="task-name">Assess Risks</div><div class="task-desc">Identifies uncertainties that could affect the ability to achieve the future state and determines how to respond to them.</div></div>
-        <div class="task-card"><div class="task-name">Define Change Strategy</div><div class="task-desc">Determines the best approach to move from current to future state: build vs. buy, phasing, resource model, and transition approach.</div></div>
-      </div>
-
-      <div class="section-title">Key Analytical Techniques <span style="font-size:9px;color:var(--text-dim);letter-spacing:0.05em;font-family:'IBM Plex Sans',sans-serif;text-transform:none;font-weight:300">— tap any term</span></div>
-      <div class="techniques-grid" data-group="ka4">
-        <span class="tech-pill" data-def="Evaluates internal Strengths and Weaknesses alongside external Opportunities and Threats to understand the organization's strategic position and inform direction.">SWOT Analysis</span>
-        <span class="tech-pill" data-def="Examines macro-environmental factors: Political, Economic, Social, Technological, Legal, and Environmental. All external — used to identify constraints and opportunities beyond organizational control.">PESTLE Analysis</span>
-        <span class="tech-pill" data-def="Investigates the underlying causes of a problem rather than its symptoms, using techniques like Five Whys or fishbone diagrams. Essential before recommending any solution.">Root Cause Analysis</span>
-        <span class="tech-pill" data-def="Compares current state capabilities to desired future state capabilities to identify what must change. The gap defines the scope and content of the change initiative.">Gap Analysis</span>
-        <span class="tech-pill" data-def="Maps forces driving a change (enablers) against forces resisting it (barriers). Helps plan change strategies by identifying how to strengthen drivers and weaken resistors.">Force Field Analysis</span>
-        <span class="tech-pill" data-def="Comparing organizational processes or performance against industry standards or peer organizations to contextualize the current state and identify realistic improvement targets.">Benchmarking</span>
-        <span class="tech-pill" data-def="Assesses what the organization can currently do, identifying capability gaps between what exists today and what is needed to achieve the future state.">Business Capability Analysis</span>
-        <span class="tech-pill" data-def="Evaluates options against defined criteria using structured techniques (decision tables, scoring models, cost-benefit analysis) to support objective, defensible choices between alternatives.">Decision Analysis</span>
-        <span class="tech-pill" data-def="Identifies and evaluates uncertainties that could prevent achieving the future state. Produces a risk register with likelihood, impact, and planned responses for each identified risk.">Risk Analysis</span>
-        <span class="tech-pill" data-def="A visual root cause tool (also called Ishikawa or cause-and-effect diagram) that maps potential causes of a problem across categories like People, Process, Technology, and Environment.">Fishbone / Ishikawa Diagram</span>
-        <span class="tech-pill" data-def="Iteratively asks 'Why?' — typically five times — to trace a problem symptom back to its true root cause. Simple, fast, and surprisingly effective for straightforward problems.">Five Whys</span>
-      </div>
-      <div class="tech-def-box" id="def-ka4"><div class="tech-def-name" id="def-ka4-name"></div><div class="tech-def-text" id="def-ka4-text"></div></div>
-
-      <div class="exam-tips">
-        <div class="tips-label">Exam Tips</div>
-        <div class="tip-item">Business Need = problem or opportunity justifying investment. Never jump to a solution before understanding the need.</div>
-        <div class="tip-item">Always do root cause analysis before recommending solutions — symptoms ≠ causes.</div>
-        <div class="tip-item">SWOT = internal (strengths/weaknesses) + external (opportunities/threats). PESTLE = all external macro factors.</div>
-        <div class="tip-item">Gap analysis = current state capabilities vs. future state capabilities. The gap defines the scope of change.</div>
-        <div class="tip-item">KPIs in the future state definition must be specific and measurable — not vague objectives.</div>
-      </div>
-
-      <div class="section-title" style="margin-bottom:14px">Key Terms</div>
-      <div class="key-terms">
-        <div class="term-row"><div class="term-name">Business Need</div><div class="term-def">A problem or opportunity significant enough to justify investment. The core "why" behind any initiative.</div></div>
-        <div class="term-row"><div class="term-name">Solution Scope</div><div class="term-def">The boundary of what the solution will and will not address — distinct from project scope (the work to be done).</div></div>
-        <div class="term-row"><div class="term-name">Gap Analysis</div><div class="term-def">Comparison of current state capabilities against desired future state to identify what must change.</div></div>
-        <div class="term-row"><div class="term-name">Change Strategy</div><div class="term-def">The selected approach for achieving the future state, including build/buy decision, phasing, and transition plan.</div></div>
-        <div class="term-row"><div class="term-name">KPI</div><div class="term-def">Key Performance Indicator — a specific, measurable metric defining what success looks like in the future state.</div></div>
-      </div>
+    <div class="overview-card" style="border-top-color:var(--tag5)" onclick="showPage('ka5', document.querySelectorAll('.nav-item')[5])">
+      <div class="oc-num">KA 05</div>
+      <div class="oc-name">Req. Analysis & Design Def.</div>
+      <div class="oc-tags"><span class="oc-tag">Models</span><span class="oc-tag">Verification</span><span class="oc-tag">Validation</span></div>
     </div>
-
-    <!-- KA 5: REQUIREMENTS ANALYSIS & DESIGN DEFINITION -->
-    <div class="page" id="page-ka5">
-      <div class="ka-header">
-        <div class="ka-num" style="color:var(--tag5)">Knowledge Area 05</div>
-        <div class="ka-title">Requirements Analysis<br>& Design Definition</div>
-        <div class="ka-desc">Structures, models, verifies, and validates requirements — then defines design options for how the solution will meet those needs.</div>
-      </div>
-
-      <div class="tasks-section">
-        <div class="section-title">Core Tasks</div>
-        <div class="task-card"><div class="task-name">Specify & Model Requirements</div><div class="task-desc">Represents requirements in structured formats (text, diagrams, models) to improve clarity, precision, and stakeholder understanding.</div></div>
-        <div class="task-card"><div class="task-name">Verify Requirements</div><div class="task-desc">Ensures requirements have the right quality characteristics: complete, consistent, correct, feasible, testable, atomic, etc.</div></div>
-        <div class="task-card"><div class="task-name">Validate Requirements</div><div class="task-desc">Confirms requirements will actually deliver the intended business value — checking alignment with the business need.</div></div>
-        <div class="task-card"><div class="task-name">Define Requirements Architecture</div><div class="task-desc">Organizes requirements into a coherent structure that reflects their relationships and supports understanding at different levels.</div></div>
-        <div class="task-card"><div class="task-name">Define Design Options</div><div class="task-desc">Identifies and analyzes different ways the solution could be designed to meet requirements, including trade-offs.</div></div>
-        <div class="task-card"><div class="task-name">Analyze Potential Value & Recommend Solution</div><div class="task-desc">Evaluates design options against value, cost, risk, and feasibility to recommend the best path forward.</div></div>
-      </div>
-
-      <div class="section-title">Modeling Techniques <span style="font-size:9px;color:var(--text-dim);letter-spacing:0.05em;font-family:'IBM Plex Sans',sans-serif;text-transform:none;font-weight:300">— tap any term</span></div>
-      <div class="techniques-grid" data-group="ka5">
-        <span class="tech-pill" data-def="Visual models showing actors (users or external systems) and the interactions they have with the solution. Defines the system boundary and what behaviors are in or out of scope.">Use Case Diagrams</span>
-        <span class="tech-pill" data-def="Short, informal requirement descriptions from the user's perspective: 'As a [role] I want [feature] so that [benefit].' Paired with acceptance criteria to define done.">User Stories</span>
-        <span class="tech-pill" data-def="Business Process Model and Notation — standardized diagrams showing process flows, decision gateways, parallel paths, events, and swim lanes. The standard for business process documentation.">Process Models (BPMN)</span>
-        <span class="tech-pill" data-def="Show how data moves through a system — what enters, how it's transformed, where it's stored, and what exits. Useful for understanding information flow without focusing on process logic.">Data Flow Diagrams</span>
-        <span class="tech-pill" data-def="Model data entities (objects the system must track) and the relationships between them. Defines the data structure the solution must manage and store.">Entity-Relationship Diagrams</span>
-        <span class="tech-pill" data-def="Show how an object or entity transitions between valid states in response to events over time. Useful for modeling lifecycle objects like orders, accounts, or tickets.">State Diagrams</span>
-        <span class="tech-pill" data-def="Illustrate the chronological order of interactions between components, systems, or actors. Shows who calls what, in what order, during a specific scenario.">Sequence Diagrams</span>
-        <span class="tech-pill" data-def="A high-level diagram representing the solution as a single black box, showing all external systems and actors that interact with it. Used to define scope boundaries early.">Context Diagrams</span>
-        <span class="tech-pill" data-def="A matrix format for capturing complex business logic with multiple conditions and corresponding actions. Ensures all combinations of conditions are addressed — nothing falls through the cracks.">Decision Tables</span>
-        <span class="tech-pill" data-def="A simulated or partial version of the solution used to validate requirements and gather stakeholder feedback before full development. Reduces risk by testing assumptions early.">Prototyping</span>
-        <span class="tech-pill" data-def="Examines all touchpoints between the solution and external systems or users to identify integration requirements, data contracts, and interface specifications.">Interface Analysis</span>
-      </div>
-      <div class="tech-def-box" id="def-ka5"><div class="tech-def-name" id="def-ka5-name"></div><div class="tech-def-text" id="def-ka5-text"></div></div>
-
-      <div class="exam-tips">
-        <div class="tips-label">Exam Tips</div>
-        <div class="tip-item">Verify = quality check (are requirements well-written?). Validate = value check (will they deliver business value?). These are different.</div>
-        <div class="tip-item">Atomicity: one requirement = one testable statement. If it can be split, it should be.</div>
-        <div class="tip-item">Consistency: no two requirements should contradict each other. Conflicts must be resolved before proceeding.</div>
-        <div class="tip-item">Non-functional requirements describe qualities (performance, security, usability) — not behaviors or functions.</div>
-        <div class="tip-item">An actor in a use case = any role that interacts with the system, not necessarily a person (can be an external system).</div>
-      </div>
-
-      <div class="section-title" style="margin-bottom:14px">Requirements Quality Characteristics</div>
-      <div class="key-terms">
-        <div class="term-row"><div class="term-name">Atomic</div><div class="term-def">Each requirement contains exactly one discrete, independently testable statement.</div></div>
-        <div class="term-row"><div class="term-name">Complete</div><div class="term-def">No missing information; the requirement fully describes what is needed with no gaps.</div></div>
-        <div class="term-row"><div class="term-name">Consistent</div><div class="term-def">Does not contradict any other requirement in the set.</div></div>
-        <div class="term-row"><div class="term-name">Feasible</div><div class="term-def">Can be implemented within the known constraints of the project (budget, technology, time).</div></div>
-        <div class="term-row"><div class="term-name">Testable</div><div class="term-def">Can be verified through inspection, testing, or demonstration. Vague language makes requirements untestable.</div></div>
-        <div class="term-row"><div class="term-name">Unambiguous</div><div class="term-def">Has only one valid interpretation. No pronouns without clear referents, no subjective language.</div></div>
-      </div>
+    <div class="overview-card" style="border-top-color:var(--tag6)" onclick="showPage('ka6', document.querySelectorAll('.nav-item')[6])">
+      <div class="oc-num">KA 06</div>
+      <div class="oc-name">Solution Evaluation</div>
+      <div class="oc-tags"><span class="oc-tag">Performance</span><span class="oc-tag">Value</span><span class="oc-tag">Limitations</span></div>
     </div>
+  </div>
 
-    <!-- KA 6: SOLUTION EVALUATION -->
-    <div class="page" id="page-ka6">
-      <div class="ka-header">
-        <div class="ka-num" style="color:var(--tag6)">Knowledge Area 06</div>
-        <div class="ka-title">Solution<br>Evaluation</div>
-        <div class="ka-desc">Assesses whether a deployed solution is delivering the intended business value — and identifies what must change when it isn't.</div>
-      </div>
-
-      <div class="tasks-section">
-        <div class="section-title">Core Tasks</div>
-        <div class="task-card"><div class="task-name">Measure Solution Performance</div><div class="task-desc">Collects and analyzes post-deployment data to determine whether the solution is achieving its intended outcomes and KPIs.</div></div>
-        <div class="task-card"><div class="task-name">Analyze Performance Measures</div><div class="task-desc">Interprets performance data to understand whether gaps exist between expected and actual value, and why.</div></div>
-        <div class="task-card"><div class="task-name">Assess Solution Limitations</div><div class="task-desc">Identifies factors within the solution itself that are preventing it from delivering its full potential value.</div></div>
-        <div class="task-card"><div class="task-name">Assess Enterprise Limitations</div><div class="task-desc">Identifies organizational factors (process, culture, skills, governance) outside the solution that are limiting value realization.</div></div>
-        <div class="task-card"><div class="task-name">Recommend Actions to Increase Solution Value</div><div class="task-desc">Proposes corrective actions—enhancements, process changes, training, retirement—to close the value gap.</div></div>
-      </div>
-
-      <div class="section-title">Key Techniques <span style="font-size:9px;color:var(--text-dim);letter-spacing:0.05em;font-family:'IBM Plex Sans',sans-serif;text-transform:none;font-weight:300">— tap any term</span></div>
-      <div class="techniques-grid" data-group="ka6">
-        <span class="tech-pill" data-def="Quantitative measures used to track whether the solution is achieving the performance targets set in the future state definition. The primary tool for evaluating solution success post-deployment.">Metrics &amp; KPIs</span>
-        <span class="tech-pill" data-def="Structured questions distributed to users or stakeholders to gather feedback on solution performance, satisfaction, and adoption at scale.">Surveys / Questionnaires</span>
-        <span class="tech-pill" data-def="Watching users interact with the deployed solution to identify usability issues, workarounds, low adoption patterns, or behaviors that limit value realization.">Observation</span>
-        <span class="tech-pill" data-def="Moderated discussions with representative users to explore their experiences, perceptions, and pain points with the deployed solution.">Focus Groups</span>
-        <span class="tech-pill" data-def="Investigates why a solution is underperforming — separating organizational and behavioral root causes from technical defects to ensure the right corrective action is recommended.">Root Cause Analysis</span>
-        <span class="tech-pill" data-def="Conversations with stakeholders to gather qualitative feedback on solution value, limitations, and improvement opportunities that metrics alone can't capture.">Interviews</span>
-        <span class="tech-pill" data-def="Assesses ongoing and new risks to value realization post-deployment, determining whether the risk profile has changed and whether new responses are needed.">Risk Analysis</span>
-        <span class="tech-pill" data-def="Compares solution performance against industry standards or competitor capabilities to contextualize results and identify whether performance gaps reflect a solution problem or a market expectation shift.">Benchmarking</span>
-      </div>
-      <div class="tech-def-box" id="def-ka6"><div class="tech-def-name" id="def-ka6-name"></div><div class="tech-def-text" id="def-ka6-text"></div></div>
-
-      <div class="exam-tips">
-        <div class="tips-label">Exam Tips</div>
-        <div class="tip-item">A technically correct solution can still fail to deliver value — always investigate organizational/behavioral factors first.</div>
-        <div class="tip-item">Enterprise limitations = org factors outside the solution (training gaps, unchanged processes, low adoption, culture).</div>
-        <div class="tip-item">Solution limitations = deficiencies within the solution itself (bugs, missing features, design flaws).</div>
-        <div class="tip-item">Solution evaluation closes the loop with Strategy Analysis — did we actually achieve the future state we defined?</div>
-        <div class="tip-item">When value is lower than expected, investigate before recommending. Don't jump to "replace the system."</div>
-      </div>
-
-      <div class="section-title" style="margin-bottom:14px">Key Terms</div>
-      <div class="key-terms">
-        <div class="term-row"><div class="term-name">Solution Performance</div><div class="term-def">The degree to which a solution is achieving the outcomes and KPIs defined in the future state, measured post-deployment.</div></div>
-        <div class="term-row"><div class="term-name">Enterprise Limitations</div><div class="term-def">Internal organizational factors—culture, process, skills, governance—that cap the value a solution can deliver.</div></div>
-        <div class="term-row"><div class="term-name">Solution Limitations</div><div class="term-def">Deficiencies within the solution itself that prevent it from fully meeting requirements or delivering intended value.</div></div>
-        <div class="term-row"><div class="term-name">Value Gap</div><div class="term-def">The difference between expected business value and actual realized value after deployment. The gap drives improvement actions.</div></div>
-        <div class="term-row"><div class="term-name">Org. Readiness</div><div class="term-def">The degree to which impacted stakeholders have the knowledge, skills, and motivation to successfully adopt the solution.</div></div>
-      </div>
+  <div class="exam-facts">
+    <div class="facts-title">Exam at a Glance</div>
+    <div class="facts-grid">
+      <div class="fact-item"><div class="fact-label">Questions</div><div class="fact-value">50 multiple choice</div></div>
+      <div class="fact-item"><div class="fact-label">Time Limit</div><div class="fact-value">60 minutes</div></div>
+      <div class="fact-item"><div class="fact-label">Passing Score</div><div class="fact-value">Not publicly disclosed — target 75%+</div></div>
+      <div class="fact-item"><div class="fact-label">Delivery</div><div class="fact-value">Pearson VUE (online or test center)</div></div>
+      <div class="fact-item"><div class="fact-label">Based On</div><div class="fact-value">BABOK® Guide v3</div></div>
+      <div class="fact-item"><div class="fact-label">Renewal</div><div class="fact-value">Every 3 years — 21 CDUs required</div></div>
     </div>
+  </div>
+
+  <div class="req-types">
+    <div class="facts-title">The 4 Requirement Types — Know These Cold</div>
+    <div class="req-row">
+      <div class="req-type-badge" style="background:rgba(232,184,75,0.12);color:var(--tag1)">Business</div>
+      <div class="req-desc">High-level statements of goals, objectives, and outcomes the enterprise needs to achieve. The "why." <span class="req-example">Ex: Reduce customer churn by 15%.</span></div>
+    </div>
+    <div class="req-row">
+      <div class="req-type-badge" style="background:rgba(91,141,238,0.12);color:var(--tag2)">Stakeholder</div>
+      <div class="req-desc">Needs of a specific stakeholder group relative to the solution. The "what stakeholders need." <span class="req-example">Ex: Sales reps need to view customer history in one screen.</span></div>
+    </div>
+    <div class="req-row">
+      <div class="req-type-badge" style="background:rgba(62,207,142,0.12);color:var(--tag3)">Solution</div>
+      <div class="req-desc">Describes features and capabilities the solution must have. Split into <strong style="color:var(--text)">Functional</strong> (what it does) and <strong style="color:var(--text)">Non-Functional</strong> (how well it does it).</div>
+    </div>
+    <div class="req-row">
+      <div class="req-type-badge" style="background:rgba(199,125,255,0.12);color:var(--tag4)">Transition</div>
+      <div class="req-desc">Temporary capabilities needed only during transition from current to future state. <span class="req-example">Ex: Data migration script to move legacy records.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- KA 1: BA PLANNING & MONITORING -->
+<div class="page" id="page-ka1">
+  <div class="ka-header">
+    <div class="ka-num" style="color:var(--tag1)">Knowledge Area 01</div>
+    <div class="ka-title">Business Analysis<br>Planning & Monitoring</div>
+    <div class="ka-desc">Defines how BA work will be planned, organized, monitored, and governed throughout an initiative. Sets the stage for everything else.</div>
+  </div>
+
+  <div class="tasks-section">
+    <div class="section-title">Core Tasks</div>
+    <div class="task-card"><div class="task-name">Plan BA Approach</div><div class="task-desc">Defines the overall method—predictive, adaptive, or hybrid—and how BA work will be structured, sequenced, and performed.</div></div>
+    <div class="task-card"><div class="task-name">Plan Stakeholder Engagement</div><div class="task-desc">Identifies who the stakeholders are, analyzes their needs and influence, and determines how to effectively engage each group.</div></div>
+    <div class="task-card"><div class="task-name">Plan BA Governance</div><div class="task-desc">Establishes decision-making processes: who approves requirements, how changes are managed, and how conflicts are escalated.</div></div>
+    <div class="task-card"><div class="task-name">Plan Information Management</div><div class="task-desc">Determines how requirements and BA artifacts will be stored, organized, accessed, and maintained throughout the project.</div></div>
+    <div class="task-card"><div class="task-name">Identify BA Performance Improvements</div><div class="task-desc">Continuously assesses BA activities and outputs for effectiveness and makes adjustments to improve quality and efficiency.</div></div>
+  </div>
+
+  <div class="section-title">Key Techniques <span style="font-size:9px;color:var(--text-dim);letter-spacing:0.05em;font-family:'IBM Plex Sans',sans-serif;text-transform:none;font-weight:300">— tap any term to see its definition</span></div>
+  <div class="techniques-grid" data-group="ka1">
+    <span class="tech-pill" data-def="A group technique for generating a large number of ideas quickly without judgment, used to identify stakeholders, risks, or planning approaches.">Brainstorming</span>
+    <span class="tech-pill" data-def="Structured or unstructured one-on-one conversations to gather information, opinions, and context from individual stakeholders.">Interviews</span>
+    <span class="tech-pill" data-def="A review of past project experiences to identify what worked well and what should be improved, informing future BA planning and approach decisions.">Lessons Learned</span>
+    <span class="tech-pill" data-def="A visual diagram organizing information hierarchically around a central concept. Useful for decomposing topics, planning BA activities, and capturing stakeholder relationships.">Mind Mapping</span>
+    <span class="tech-pill" data-def="Describes roles, responsibilities, and reporting structures within an organization to understand context, authority, and stakeholder relationships.">Organizational Modelling</span>
+    <span class="tech-pill" data-def="Visual representation of how work is performed — showing steps, decisions, and flows — to understand current or future state processes and identify improvement opportunities.">Process Modelling</span>
+    <span class="tech-pill" data-def="Identifies and evaluates uncertainties that could affect the initiative, enabling the BA to plan appropriate responses and adjust the overall approach.">Risk Analysis</span>
+    <span class="tech-pill" data-def="A documented register and/or visual map of stakeholders categorized by their influence, interest, and relationship to the initiative — the foundation of stakeholder engagement planning.">Stakeholder List / Map</span>
+    <span class="tech-pill" data-def="Responsible, Accountable, Consulted, Informed — a matrix defining who does what across BA activities, decisions, and deliverables to clarify accountability.">RACI Matrix</span>
+  </div>
+  <div class="tech-def-box" id="def-ka1"><div class="tech-def-name" id="def-ka1-name"></div><div class="tech-def-text" id="def-ka1-text"></div></div>
+
+  <div class="exam-tips">
+    <div class="tips-label">Exam Tips</div>
+    <div class="tip-item">Know the difference between predictive (plan-driven) and adaptive (iterative) approaches and how BA planning differs between them.</div>
+    <div class="tip-item">Stakeholders with high influence require proactive management regardless of their level of interest.</div>
+    <div class="tip-item">Governance = decision-making authority + change control process. The BA doesn't own governance but facilitates it.</div>
+    <div class="tip-item">Performance improvement is ongoing and iterative — it's not a one-time review at project end.</div>
+  </div>
+
+  <div class="section-title" style="margin-bottom:14px">Key Terms</div>
+  <div class="key-terms">
+    <div class="term-row"><div class="term-name">BA Approach</div><div class="term-def">The overall methodology defining when, how, and what BA activities will be performed throughout the initiative.</div></div>
+    <div class="term-row"><div class="term-name">Governance</div><div class="term-def">Processes defining how decisions are made, who has authority, how changes are requested and approved, and how conflicts are resolved.</div></div>
+    <div class="term-row"><div class="term-name">Stakeholder Engagement</div><div class="term-def">The ongoing process of identifying, analyzing, and planning appropriate interaction with stakeholders based on their needs and influence.</div></div>
+    <div class="term-row"><div class="term-name">CDU</div><div class="term-def">Continuing Development Unit. Required for ECBA renewal (21 CDUs every 3 years) to demonstrate ongoing professional development.</div></div>
+  </div>
+</div>
+
+<!-- KA 2: ELICITATION & COLLABORATION -->
+<div class="page" id="page-ka2">
+  <div class="ka-header">
+    <div class="ka-num" style="color:var(--tag2)">Knowledge Area 02</div>
+    <div class="ka-title">Elicitation &<br>Collaboration</div>
+    <div class="ka-desc">The active process of drawing out, confirming, and communicating business analysis information. Elicitation is investigative — not just passive collection.</div>
+  </div>
+
+  <div class="tasks-section">
+    <div class="section-title">Core Tasks</div>
+    <div class="task-card"><div class="task-name">Prepare for Elicitation</div><div class="task-desc">Plans each elicitation activity: defines objectives, selects techniques, prepares questions/materials, and schedules participants.</div></div>
+    <div class="task-card"><div class="task-name">Conduct Elicitation</div><div class="task-desc">Executes the planned activity to draw out information from stakeholders. May reveal stated, unstated, and tacit needs.</div></div>
+    <div class="task-card"><div class="task-name">Confirm Elicitation Results</div><div class="task-desc">Reviews and validates that captured information is accurate and complete. Typically done by sharing notes back with participants.</div></div>
+    <div class="task-card"><div class="task-name">Communicate BA Information</div><div class="task-desc">Ensures the right information reaches the right stakeholders at the right time in a format appropriate to the audience.</div></div>
+    <div class="task-card"><div class="task-name">Manage Stakeholder Collaboration</div><div class="task-desc">Builds and maintains productive working relationships; manages conflict, participation, and buy-in throughout the initiative.</div></div>
+  </div>
+
+  <div class="section-title">Elicitation Techniques — Know All of These <span style="font-size:9px;color:var(--text-dim);letter-spacing:0.05em;font-family:'IBM Plex Sans',sans-serif;text-transform:none;font-weight:300">— tap any term</span></div>
+  <div class="techniques-grid" data-group="ka2">
+    <span class="tech-pill" data-def="Direct one-on-one conversations using open or closed questions to surface stated, unstated, and tacit needs. Best for probing deeply into individual perspectives and motivations.">Interviews</span>
+    <span class="tech-pill" data-def="Facilitated group sessions (Joint Application Design) bringing stakeholders together to collaboratively define, refine, and reach consensus on requirements in real time.">Workshops / JAD</span>
+    <span class="tech-pill" data-def="A moderated discussion with a selected group of representative users to explore shared attitudes, needs, and perceptions about a topic or proposed solution.">Focus Groups</span>
+    <span class="tech-pill" data-def="Watching users perform their actual work. Passive = watching without interacting (best for unfiltered reality). Active = participating alongside the subject (best for complex tasks).">Observation (Active &amp; Passive)</span>
+    <span class="tech-pill" data-def="Written questions distributed to a large audience to collect structured input efficiently. Best for breadth across many stakeholders — not depth. Great for validating or confirming findings.">Surveys / Questionnaires</span>
+    <span class="tech-pill" data-def="Creating a partial or simulated version of a solution (mockup, wireframe, demo) to elicit concrete feedback and surface requirements that stakeholders can't articulate from scratch.">Prototyping</span>
+    <span class="tech-pill" data-def="Reviewing existing materials — policies, reports, process manuals, org charts — to extract relevant information about the current state without requiring stakeholder time.">Document Analysis</span>
+    <span class="tech-pill" data-def="Examining touchpoints between systems or between humans and systems to identify integration points, data exchanges, and interface requirements at system boundaries.">Interface Analysis</span>
+    <span class="tech-pill" data-def="A group ideation technique for generating a high volume of ideas quickly with no criticism during generation. Used to surface stakeholder needs, risks, and options.">Brainstorming</span>
+    <span class="tech-pill" data-def="Structured activities (like Product Box, Speedboat, or Remember the Future) that engage stakeholders creatively, breaking down barriers to surface genuine needs and priorities.">Collaborative Games</span>
+    <span class="tech-pill" data-def="A visual tool for capturing and organizing elicitation outputs around a central topic, revealing relationships between ideas and highlighting gaps in coverage.">Mind Mapping</span>
+    <span class="tech-pill" data-def="Comparing organizational processes, features, or performance against industry peers or best practices to identify gaps, ground requirements in realistic expectations, and identify opportunities.">Benchmarking</span>
+  </div>
+  <div class="tech-def-box" id="def-ka2"><div class="tech-def-name" id="def-ka2-name"></div><div class="tech-def-text" id="def-ka2-text"></div></div>
+
+  <div class="exam-tips">
+    <div class="tips-label">Exam Tips</div>
+    <div class="tip-item">Elicitation ≠ requirements gathering. Elicitation actively surfaces tacit and unstated knowledge; gathering is passive.</div>
+    <div class="tip-item">Passive observation = watching without interacting. Active observation = participating alongside the user.</div>
+    <div class="tip-item">Vague statements ("user-friendly," "fast") must always be probed for measurable, specific meaning — never accepted as written.</div>
+    <div class="tip-item">Nominal Group Technique and brainwriting neutralize dominant personalities in group settings.</div>
+    <div class="tip-item">Confirm Elicitation Results comes BEFORE drafting formal requirements — accuracy first.</div>
+  </div>
+
+  <div class="section-title" style="margin-bottom:14px">Technique Selector</div>
+  <div class="key-terms">
+    <div class="term-row"><div class="term-name">Need tacit knowledge</div><div class="term-def">Open-ended interviews or observation — surface what stakeholders know but can't easily articulate.</div></div>
+    <div class="term-row"><div class="term-name">Large group input</div><div class="term-def">Surveys for breadth; workshops for depth and consensus.</div></div>
+    <div class="term-row"><div class="term-name">Stakeholder can't articulate needs</div><div class="term-def">Prototyping — give them something concrete to react to.</div></div>
+    <div class="term-row"><div class="term-name">Understand current process</div><div class="term-def">Observation or document analysis — see what actually happens, not just what's described.</div></div>
+    <div class="term-row"><div class="term-name">Dominant personality problem</div><div class="term-def">Brainwriting or Nominal Group Technique to capture independent perspectives.</div></div>
+  </div>
+</div>
+
+<!-- KA 3: REQUIREMENTS LIFE CYCLE MANAGEMENT -->
+<div class="page" id="page-ka3">
+  <div class="ka-header">
+    <div class="ka-num" style="color:var(--tag3)">Knowledge Area 03</div>
+    <div class="ka-title">Requirements Life<br>Cycle Management</div>
+    <div class="ka-desc">Managing requirements from creation through retirement — ensuring they stay accurate, traceable, prioritized, and approved as the project evolves.</div>
+  </div>
+
+  <div class="tasks-section">
+    <div class="section-title">Core Tasks</div>
+    <div class="task-card"><div class="task-name">Trace Requirements</div><div class="task-desc">Documents relationships between requirements and related artifacts (goals, tests, design elements). Enables impact analysis.</div></div>
+    <div class="task-card"><div class="task-name">Maintain Requirements</div><div class="task-desc">Keeps requirements accurate, complete, consistent, and accessible as the initiative progresses and changes occur.</div></div>
+    <div class="task-card"><div class="task-name">Prioritize Requirements</div><div class="task-desc">Determines relative importance and implementation order based on value, cost, risk, and dependencies.</div></div>
+    <div class="task-card"><div class="task-name">Assess Requirements Changes</div><div class="task-desc">Evaluates the impact of proposed changes on related requirements, design components, and project plans before accepting.</div></div>
+    <div class="task-card"><div class="task-name">Approve Requirements</div><div class="task-desc">Obtains formal stakeholder sign-off that requirements are complete and accurate, authorizing the solution team to proceed.</div></div>
+  </div>
+
+  <div class="section-title">Prioritization Techniques <span style="font-size:9px;color:var(--text-dim);letter-spacing:0.05em;font-family:'IBM Plex Sans',sans-serif;text-transform:none;font-weight:300">— tap any term</span></div>
+  <div class="techniques-grid" data-group="ka3">
+    <span class="tech-pill" data-def="Must Have / Should Have / Could Have / Won't Have — a fast, collaborative technique categorizing requirements by necessity. 'Must Haves' are non-negotiable for the current delivery.">MoSCoW (Must/Should/Could/Won't)</span>
+    <span class="tech-pill" data-def="Assigns numerical weights to criteria (value, cost, risk, strategic alignment) and scores each requirement, producing an objective ranked list based on the composite score.">Weighted Ranking / Scoring</span>
+    <span class="tech-pill" data-def="Allocating a fixed time window to a set of work. Requirements that fit within the constraint are included; others are deferred to later iterations. Common in agile environments.">Timeboxing</span>
+    <span class="tech-pill" data-def="Group members allocate a set number of votes to requirements they value most. The distribution of votes surfaces collective priorities quickly without lengthy debate.">Voting / Dot Voting</span>
+    <span class="tech-pill" data-def="Stakeholders are given a fictional budget to 'purchase' features. Because they must make tradeoffs, the exercise reveals which requirements they actually value most — cutting through 'everything is important.'">Buy a Feature</span>
+    <span class="tech-pill" data-def="Iterative anonymous expert consensus technique. Experts independently estimate or rate; results are shared anonymously; the group converges over multiple rounds. Eliminates groupthink.">Delphi Technique</span>
+    <span class="tech-pill" data-def="Categorizes requirements by their impact on customer satisfaction: Basic (expected, causes dissatisfaction if absent), Performance (more = better), and Delight (unexpected but valued).">Kano Model</span>
+  </div>
+  <div class="tech-def-box" id="def-ka3"><div class="tech-def-name" id="def-ka3-name"></div><div class="tech-def-text" id="def-ka3-text"></div></div>
+
+  <div class="exam-tips">
+    <div class="tips-label">Exam Tips</div>
+    <div class="tip-item">Always assess impact BEFORE accepting or rejecting a change request — never update requirements first.</div>
+    <div class="tip-item">Traceability runs both directions: forward (to tests/design) and backward (to business goals).</div>
+    <div class="tip-item">Approval ≠ sign-off for the sake of it. It formally authorizes action and signals stakeholder confidence in the requirements.</div>
+    <div class="tip-item">When stakeholders conflict over a requirement, the BA facilitates — not arbitrates. Return to the business need.</div>
+    <div class="tip-item">MoSCoW is the most common prioritization technique on the exam. Know what each category means.</div>
+  </div>
+
+  <div class="section-title" style="margin-bottom:14px">Key Terms</div>
+  <div class="key-terms">
+    <div class="term-row"><div class="term-name">Traceability</div><div class="term-def">Documented relationships between requirements and other artifacts, enabling completeness checks and change impact analysis.</div></div>
+    <div class="term-row"><div class="term-name">Dependency</div><div class="term-def">A relationship where one requirement relies on another being implemented first for it to be meaningful.</div></div>
+    <div class="term-row"><div class="term-name">Baseline</div><div class="term-def">An approved, stable version of requirements at a point in time — the reference point for managing changes.</div></div>
+    <div class="term-row"><div class="term-name">MoSCoW</div><div class="term-def">Must Have / Should Have / Could Have / Won't Have. A simple prioritization framework for categorizing requirements by necessity.</div></div>
+  </div>
+</div>
+
+<!-- KA 4: STRATEGY ANALYSIS -->
+<div class="page" id="page-ka4">
+  <div class="ka-header">
+    <div class="ka-num" style="color:var(--tag4)">Knowledge Area 04</div>
+    <div class="ka-title">Strategy<br>Analysis</div>
+    <div class="ka-desc">Understands why change is needed, what the future should look like, and how to get there. Bridges business context with solution direction.</div>
+  </div>
+
+  <div class="tasks-section">
+    <div class="section-title">Core Tasks</div>
+    <div class="task-card"><div class="task-name">Analyze Current State</div><div class="task-desc">Establishes the baseline: existing capabilities, processes, organizational context, and the business need or opportunity driving change.</div></div>
+    <div class="task-card"><div class="task-name">Define Future State</div><div class="task-desc">Describes the desired outcomes: required capabilities, organizational changes, KPIs, and what success looks like.</div></div>
+    <div class="task-card"><div class="task-name">Assess Risks</div><div class="task-desc">Identifies uncertainties that could affect the ability to achieve the future state and determines how to respond to them.</div></div>
+    <div class="task-card"><div class="task-name">Define Change Strategy</div><div class="task-desc">Determines the best approach to move from current to future state: build vs. buy, phasing, resource model, and transition approach.</div></div>
+  </div>
+
+  <div class="section-title">Key Analytical Techniques <span style="font-size:9px;color:var(--text-dim);letter-spacing:0.05em;font-family:'IBM Plex Sans',sans-serif;text-transform:none;font-weight:300">— tap any term</span></div>
+  <div class="techniques-grid" data-group="ka4">
+    <span class="tech-pill" data-def="Evaluates internal Strengths and Weaknesses alongside external Opportunities and Threats to understand the organization's strategic position and inform direction.">SWOT Analysis</span>
+    <span class="tech-pill" data-def="Examines macro-environmental factors: Political, Economic, Social, Technological, Legal, and Environmental. All external — used to identify constraints and opportunities beyond organizational control.">PESTLE Analysis</span>
+    <span class="tech-pill" data-def="Investigates the underlying causes of a problem rather than its symptoms, using techniques like Five Whys or fishbone diagrams. Essential before recommending any solution.">Root Cause Analysis</span>
+    <span class="tech-pill" data-def="Compares current state capabilities to desired future state capabilities to identify what must change. The gap defines the scope and content of the change initiative.">Gap Analysis</span>
+    <span class="tech-pill" data-def="Maps forces driving a change (enablers) against forces resisting it (barriers). Helps plan change strategies by identifying how to strengthen drivers and weaken resistors.">Force Field Analysis</span>
+    <span class="tech-pill" data-def="Comparing organizational processes or performance against industry standards or peer organizations to contextualize the current state and identify realistic improvement targets.">Benchmarking</span>
+    <span class="tech-pill" data-def="Assesses what the organization can currently do, identifying capability gaps between what exists today and what is needed to achieve the future state.">Business Capability Analysis</span>
+    <span class="tech-pill" data-def="Evaluates options against defined criteria using structured techniques (decision tables, scoring models, cost-benefit analysis) to support objective, defensible choices between alternatives.">Decision Analysis</span>
+    <span class="tech-pill" data-def="Identifies and evaluates uncertainties that could prevent achieving the future state. Produces a risk register with likelihood, impact, and planned responses for each identified risk.">Risk Analysis</span>
+    <span class="tech-pill" data-def="A visual root cause tool (also called Ishikawa or cause-and-effect diagram) that maps potential causes of a problem across categories like People, Process, Technology, and Environment.">Fishbone / Ishikawa Diagram</span>
+    <span class="tech-pill" data-def="Iteratively asks 'Why?' — typically five times — to trace a problem symptom back to its true root cause. Simple, fast, and surprisingly effective for straightforward problems.">Five Whys</span>
+  </div>
+  <div class="tech-def-box" id="def-ka4"><div class="tech-def-name" id="def-ka4-name"></div><div class="tech-def-text" id="def-ka4-text"></div></div>
+
+  <div class="exam-tips">
+    <div class="tips-label">Exam Tips</div>
+    <div class="tip-item">Business Need = problem or opportunity justifying investment. Never jump to a solution before understanding the need.</div>
+    <div class="tip-item">Always do root cause analysis before recommending solutions — symptoms ≠ causes.</div>
+    <div class="tip-item">SWOT = internal (strengths/weaknesses) + external (opportunities/threats). PESTLE = all external macro factors.</div>
+    <div class="tip-item">Gap analysis = current state capabilities vs. future state capabilities. The gap defines the scope of change.</div>
+    <div class="tip-item">KPIs in the future state definition must be specific and measurable — not vague objectives.</div>
+  </div>
+
+  <div class="section-title" style="margin-bottom:14px">Key Terms</div>
+  <div class="key-terms">
+    <div class="term-row"><div class="term-name">Business Need</div><div class="term-def">A problem or opportunity significant enough to justify investment. The core "why" behind any initiative.</div></div>
+    <div class="term-row"><div class="term-name">Solution Scope</div><div class="term-def">The boundary of what the solution will and will not address — distinct from project scope (the work to be done).</div></div>
+    <div class="term-row"><div class="term-name">Gap Analysis</div><div class="term-def">Comparison of current state capabilities against desired future state to identify what must change.</div></div>
+    <div class="term-row"><div class="term-name">Change Strategy</div><div class="term-def">The selected approach for achieving the future state, including build/buy decision, phasing, and transition plan.</div></div>
+    <div class="term-row"><div class="term-name">KPI</div><div class="term-def">Key Performance Indicator — a specific, measurable metric defining what success looks like in the future state.</div></div>
+  </div>
+</div>
+
+<!-- KA 5: REQUIREMENTS ANALYSIS & DESIGN DEFINITION -->
+<div class="page" id="page-ka5">
+  <div class="ka-header">
+    <div class="ka-num" style="color:var(--tag5)">Knowledge Area 05</div>
+    <div class="ka-title">Requirements Analysis<br>& Design Definition</div>
+    <div class="ka-desc">Structures, models, verifies, and validates requirements — then defines design options for how the solution will meet those needs.</div>
+  </div>
+
+  <div class="tasks-section">
+    <div class="section-title">Core Tasks</div>
+    <div class="task-card"><div class="task-name">Specify & Model Requirements</div><div class="task-desc">Represents requirements in structured formats (text, diagrams, models) to improve clarity, precision, and stakeholder understanding.</div></div>
+    <div class="task-card"><div class="task-name">Verify Requirements</div><div class="task-desc">Ensures requirements have the right quality characteristics: complete, consistent, correct, feasible, testable, atomic, etc.</div></div>
+    <div class="task-card"><div class="task-name">Validate Requirements</div><div class="task-desc">Confirms requirements will actually deliver the intended business value — checking alignment with the business need.</div></div>
+    <div class="task-card"><div class="task-name">Define Requirements Architecture</div><div class="task-desc">Organizes requirements into a coherent structure that reflects their relationships and supports understanding at different levels.</div></div>
+    <div class="task-card"><div class="task-name">Define Design Options</div><div class="task-desc">Identifies and analyzes different ways the solution could be designed to meet requirements, including trade-offs.</div></div>
+    <div class="task-card"><div class="task-name">Analyze Potential Value & Recommend Solution</div><div class="task-desc">Evaluates design options against value, cost, risk, and feasibility to recommend the best path forward.</div></div>
+  </div>
+
+  <div class="section-title">Modeling Techniques <span style="font-size:9px;color:var(--text-dim);letter-spacing:0.05em;font-family:'IBM Plex Sans',sans-serif;text-transform:none;font-weight:300">— tap any term</span></div>
+  <div class="techniques-grid" data-group="ka5">
+    <span class="tech-pill" data-def="Visual models showing actors (users or external systems) and the interactions they have with the solution. Defines the system boundary and what behaviors are in or out of scope.">Use Case Diagrams</span>
+    <span class="tech-pill" data-def="Short, informal requirement descriptions from the user's perspective: 'As a [role] I want [feature] so that [benefit].' Paired with acceptance criteria to define done.">User Stories</span>
+    <span class="tech-pill" data-def="Business Process Model and Notation — standardized diagrams showing process flows, decision gateways, parallel paths, events, and swim lanes. The standard for business process documentation.">Process Models (BPMN)</span>
+    <span class="tech-pill" data-def="Show how data moves through a system — what enters, how it's transformed, where it's stored, and what exits. Useful for understanding information flow without focusing on process logic.">Data Flow Diagrams</span>
+    <span class="tech-pill" data-def="Model data entities (objects the system must track) and the relationships between them. Defines the data structure the solution must manage and store.">Entity-Relationship Diagrams</span>
+    <span class="tech-pill" data-def="Show how an object or entity transitions between valid states in response to events over time. Useful for modeling lifecycle objects like orders, accounts, or tickets.">State Diagrams</span>
+    <span class="tech-pill" data-def="Illustrate the chronological order of interactions between components, systems, or actors. Shows who calls what, in what order, during a specific scenario.">Sequence Diagrams</span>
+    <span class="tech-pill" data-def="A high-level diagram representing the solution as a single black box, showing all external systems and actors that interact with it. Used to define scope boundaries early.">Context Diagrams</span>
+    <span class="tech-pill" data-def="A matrix format for capturing complex business logic with multiple conditions and corresponding actions. Ensures all combinations of conditions are addressed — nothing falls through the cracks.">Decision Tables</span>
+    <span class="tech-pill" data-def="A simulated or partial version of the solution used to validate requirements and gather stakeholder feedback before full development. Reduces risk by testing assumptions early.">Prototyping</span>
+    <span class="tech-pill" data-def="Examines all touchpoints between the solution and external systems or users to identify integration requirements, data contracts, and interface specifications.">Interface Analysis</span>
+  </div>
+  <div class="tech-def-box" id="def-ka5"><div class="tech-def-name" id="def-ka5-name"></div><div class="tech-def-text" id="def-ka5-text"></div></div>
+
+  <div class="exam-tips">
+    <div class="tips-label">Exam Tips</div>
+    <div class="tip-item">Verify = quality check (are requirements well-written?). Validate = value check (will they deliver business value?). These are different.</div>
+    <div class="tip-item">Atomicity: one requirement = one testable statement. If it can be split, it should be.</div>
+    <div class="tip-item">Consistency: no two requirements should contradict each other. Conflicts must be resolved before proceeding.</div>
+    <div class="tip-item">Non-functional requirements describe qualities (performance, security, usability) — not behaviors or functions.</div>
+    <div class="tip-item">An actor in a use case = any role that interacts with the system, not necessarily a person (can be an external system).</div>
+  </div>
+
+  <div class="section-title" style="margin-bottom:14px">Requirements Quality Characteristics</div>
+  <div class="key-terms">
+    <div class="term-row"><div class="term-name">Atomic</div><div class="term-def">Each requirement contains exactly one discrete, independently testable statement.</div></div>
+    <div class="term-row"><div class="term-name">Complete</div><div class="term-def">No missing information; the requirement fully describes what is needed with no gaps.</div></div>
+    <div class="term-row"><div class="term-name">Consistent</div><div class="term-def">Does not contradict any other requirement in the set.</div></div>
+    <div class="term-row"><div class="term-name">Feasible</div><div class="term-def">Can be implemented within the known constraints of the project (budget, technology, time).</div></div>
+    <div class="term-row"><div class="term-name">Testable</div><div class="term-def">Can be verified through inspection, testing, or demonstration. Vague language makes requirements untestable.</div></div>
+    <div class="term-row"><div class="term-name">Unambiguous</div><div class="term-def">Has only one valid interpretation. No pronouns without clear referents, no subjective language.</div></div>
+  </div>
+</div>
+
+<!-- KA 6: SOLUTION EVALUATION -->
+<div class="page" id="page-ka6">
+  <div class="ka-header">
+    <div class="ka-num" style="color:var(--tag6)">Knowledge Area 06</div>
+    <div class="ka-title">Solution<br>Evaluation</div>
+    <div class="ka-desc">Assesses whether a deployed solution is delivering the intended business value — and identifies what must change when it isn't.</div>
+  </div>
+
+  <div class="tasks-section">
+    <div class="section-title">Core Tasks</div>
+    <div class="task-card"><div class="task-name">Measure Solution Performance</div><div class="task-desc">Collects and analyzes post-deployment data to determine whether the solution is achieving its intended outcomes and KPIs.</div></div>
+    <div class="task-card"><div class="task-name">Analyze Performance Measures</div><div class="task-desc">Interprets performance data to understand whether gaps exist between expected and actual value, and why.</div></div>
+    <div class="task-card"><div class="task-name">Assess Solution Limitations</div><div class="task-desc">Identifies factors within the solution itself that are preventing it from delivering its full potential value.</div></div>
+    <div class="task-card"><div class="task-name">Assess Enterprise Limitations</div><div class="task-desc">Identifies organizational factors (process, culture, skills, governance) outside the solution that are limiting value realization.</div></div>
+    <div class="task-card"><div class="task-name">Recommend Actions to Increase Solution Value</div><div class="task-desc">Proposes corrective actions—enhancements, process changes, training, retirement—to close the value gap.</div></div>
+  </div>
+
+  <div class="section-title">Key Techniques <span style="font-size:9px;color:var(--text-dim);letter-spacing:0.05em;font-family:'IBM Plex Sans',sans-serif;text-transform:none;font-weight:300">— tap any term</span></div>
+  <div class="techniques-grid" data-group="ka6">
+    <span class="tech-pill" data-def="Quantitative measures used to track whether the solution is achieving the performance targets set in the future state definition. The primary tool for evaluating solution success post-deployment.">Metrics &amp; KPIs</span>
+    <span class="tech-pill" data-def="Structured questions distributed to users or stakeholders to gather feedback on solution performance, satisfaction, and adoption at scale.">Surveys / Questionnaires</span>
+    <span class="tech-pill" data-def="Watching users interact with the deployed solution to identify usability issues, workarounds, low adoption patterns, or behaviors that limit value realization.">Observation</span>
+    <span class="tech-pill" data-def="Moderated discussions with representative users to explore their experiences, perceptions, and pain points with the deployed solution.">Focus Groups</span>
+    <span class="tech-pill" data-def="Investigates why a solution is underperforming — separating organizational and behavioral root causes from technical defects to ensure the right corrective action is recommended.">Root Cause Analysis</span>
+    <span class="tech-pill" data-def="Conversations with stakeholders to gather qualitative feedback on solution value, limitations, and improvement opportunities that metrics alone can't capture.">Interviews</span>
+    <span class="tech-pill" data-def="Assesses ongoing and new risks to value realization post-deployment, determining whether the risk profile has changed and whether new responses are needed.">Risk Analysis</span>
+    <span class="tech-pill" data-def="Compares solution performance against industry standards or competitor capabilities to contextualize results and identify whether performance gaps reflect a solution problem or a market expectation shift.">Benchmarking</span>
+  </div>
+  <div class="tech-def-box" id="def-ka6"><div class="tech-def-name" id="def-ka6-name"></div><div class="tech-def-text" id="def-ka6-text"></div></div>
+
+  <div class="exam-tips">
+    <div class="tips-label">Exam Tips</div>
+    <div class="tip-item">A technically correct solution can still fail to deliver value — always investigate organizational/behavioral factors first.</div>
+    <div class="tip-item">Enterprise limitations = org factors outside the solution (training gaps, unchanged processes, low adoption, culture).</div>
+    <div class="tip-item">Solution limitations = deficiencies within the solution itself (bugs, missing features, design flaws).</div>
+    <div class="tip-item">Solution evaluation closes the loop with Strategy Analysis — did we actually achieve the future state we defined?</div>
+    <div class="tip-item">When value is lower than expected, investigate before recommending. Don't jump to "replace the system."</div>
+  </div>
+
+  <div class="section-title" style="margin-bottom:14px">Key Terms</div>
+  <div class="key-terms">
+    <div class="term-row"><div class="term-name">Solution Performance</div><div class="term-def">The degree to which a solution is achieving the outcomes and KPIs defined in the future state, measured post-deployment.</div></div>
+    <div class="term-row"><div class="term-name">Enterprise Limitations</div><div class="term-def">Internal organizational factors—culture, process, skills, governance—that cap the value a solution can deliver.</div></div>
+    <div class="term-row"><div class="term-name">Solution Limitations</div><div class="term-def">Deficiencies within the solution itself that prevent it from fully meeting requirements or delivering intended value.</div></div>
+    <div class="term-row"><div class="term-name">Value Gap</div><div class="term-def">The difference between expected business value and actual realized value after deployment. The gap drives improvement actions.</div></div>
+    <div class="term-row"><div class="term-name">Org. Readiness</div><div class="term-def">The degree to which impacted stakeholders have the knowledge, skills, and motivation to successfully adopt the solution.</div></div>
+  </div>
+</div>
+```
 
   </main>
 </div>
@@ -870,5 +924,8 @@ document.addEventListener('click', function(e) {
   }
 });
 </script>
+
+<style>.copy-src-btn{position:fixed;bottom:20px;right:20px;z-index:9999;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;border-radius:8px;border:1px solid rgba(91,141,238,0.4);background:rgba(14,17,23,0.92);color:#5b8dee;cursor:pointer;backdrop-filter:blur(8px);transition:all 0.15s;display:flex;align-items:center;gap:7px}.copy-src-btn:hover{border-color:#5b8dee;background:rgba(91,141,238,0.1)}.copy-src-btn.copied{border-color:#3ecf8e;color:#3ecf8e;background:rgba(62,207,142,0.08)}</style><button class="copy-src-btn" id="copySrcBtn" onclick="copySrc()"><span>&#x29C9;</span><span id="copySrcLabel">Copy Source</span></button><script>function copySrc(){navigator.clipboard.writeText(document.documentElement.outerHTML).then(()=>{const b=document.getElementById("copySrcBtn"),l=document.getElementById("copySrcLabel");b.classList.add("copied");l.textContent="Copied!";setTimeout(()=>{b.classList.remove("copied");l.textContent="Copy Source"},2000)})}<\/script>
+
 </body>
 </html>
