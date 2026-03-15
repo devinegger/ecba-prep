@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About · ECBA Prep</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1117;
+    --surface: #161b27;
+    --surface2: #1d2436;
+    --border: #2a3347;
+    --accent: #e8b84b;
+    --accent2: #5b8dee;
+    --text: #e8eaf0;
+    --text-dim: #8892a4;
+    --correct: #3ecf8e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(91,141,238,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91,141,238,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+/* ── SITE NAV ── */
+.site-nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 100;
+background: rgba(14,17,23,0.92);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid var(–border);
+display: flex;
+align-items: center;
+padding: 0 24px;
+height: 44px;
+gap: 4px;
+}
+.site-nav-brand {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.15em;
+color: var(–accent);
+text-decoration: none;
+text-transform: uppercase;
+margin-right: 16px;
+}
+.site-nav-link {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 0.08em;
+color: var(–text-dim);
+text-decoration: none;
+padding: 6px 12px;
+border-radius: 6px;
+transition: all 0.15s;
+}
+.site-nav-link:hover { color: var(–text); background: var(–surface2); }
+.site-nav-link.active { color: var(–text); background: var(–surface2); border: 1px solid var(–border); }
+.site-nav-spacer { flex: 1; }
+
+/* ── LAYOUT ── */
+.page {
+position: relative;
+z-index: 1;
+max-width: 680px;
+margin: 0 auto;
+padding: 88px 24px 80px;
+}
+
+/* ── HERO ── */
+.hero {
+margin-bottom: 56px;
+padding-bottom: 48px;
+border-bottom: 1px solid var(–border);
+}
+.hero-eyebrow {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 0.2em;
+color: var(–accent);
+text-transform: uppercase;
+margin-bottom: 16px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.hero-eyebrow::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: var(–border);
+}
+.hero-title {
+font-family: ‘Libre Baskerville’, serif;
+font-size: 42px;
+font-weight: 700;
+line-height: 1.1;
+margin-bottom: 20px;
+letter-spacing: -0.5px;
+}
+.hero-title span { color: var(–accent); }
+.hero-desc {
+font-size: 15px;
+color: var(–text-dim);
+line-height: 1.75;
+font-weight: 300;
+max-width: 520px;
+}
+
+/* ── TOOLS ── */
+.section { margin-bottom: 48px; }
+.section-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 0.2em;
+color: var(–text-dim);
+text-transform: uppercase;
+margin-bottom: 20px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.section-label::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: var(–border);
+}
+
+.tool-list { display: flex; flex-direction: column; gap: 12px; }
+.tool-item {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 20px 22px;
+display: flex;
+gap: 16px;
+align-items: flex-start;
+text-decoration: none;
+transition: all 0.15s;
+color: var(–text);
+}
+.tool-item:hover { border-color: var(–accent2); background: var(–surface2); transform: translateX(3px); }
+.tool-emoji { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.tool-item-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.tool-item-desc { font-size: 13px; color: var(–text-dim); line-height: 1.55; font-weight: 300; }
+
+/* ── STACK ── */
+.stack-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 10px;
+}
+.stack-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 10px;
+padding: 16px 18px;
+}
+.stack-name {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 12px;
+font-weight: 500;
+color: var(–text);
+margin-bottom: 4px;
+}
+.stack-role {
+font-size: 12px;
+color: var(–text-dim);
+font-weight: 300;
+line-height: 1.5;
+}
+
+/* ── CREDIT ── */
+.credit-block {
+background: rgba(232,184,75,0.04);
+border: 1px solid rgba(232,184,75,0.15);
+border-radius: 12px;
+padding: 28px;
+margin-bottom: 48px;
+}
+.credit-intro {
+font-size: 14px;
+color: var(–text-dim);
+line-height: 1.75;
+font-weight: 300;
+margin-bottom: 20px;
+}
+.credit-sig {
+display: flex;
+align-items: center;
+gap: 14px;
+}
+.credit-avatar {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background: linear-gradient(135deg, var(–accent2), var(–accent));
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+flex-shrink: 0;
+}
+.credit-name {
+font-family: ‘Libre Baskerville’, serif;
+font-size: 14px;
+font-weight: 700;
+margin-bottom: 2px;
+}
+.credit-role {
+font-size: 11px;
+color: var(–text-dim);
+font-weight: 300;
+}
+
+/* ── DISCLAIMER ── */
+.disclaimer {
+font-size: 11px;
+color: var(–text-dim);
+font-weight: 300;
+line-height: 1.65;
+opacity: 0.7;
+border-top: 1px solid var(–border);
+padding-top: 24px;
+}
+
+@media (max-width: 600px) {
+.hero-title { font-size: 30px; }
+.stack-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="site-nav-brand" href="index.html">ECBA Prep</a>
+  <a class="site-nav-link" href="index.html">Hub</a>
+  <a class="site-nav-link" href="exam.html">Exam</a>
+  <a class="site-nav-link" href="study-guide.html">Study Guide</a>
+  <div class="site-nav-spacer"></div>
+  <a class="site-nav-link active" href="about.html">About</a>
+</nav>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-eyebrow">About this project</div>
+    <div class="hero-title">Built to pass.<br><span>Built to share.</span></div>
+    <div class="hero-desc">
+      This is a suite of interactive study tools for the IIBA ECBA certification — built in the course of actually preparing for the exam. What started as a practice exam became a full study platform, developed collaboratively between a human and an AI in real time, on a road trip.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">The Tools</div>
+    <div class="tool-list">
+      <a class="tool-item" href="exam.html">
+        <div class="tool-emoji">📋</div>
+        <div>
+          <div class="tool-item-name">Mock Exam</div>
+          <div class="tool-item-desc">50 questions across all six BABOK® v3 Knowledge Areas. Timed at 60 minutes with full answer review, explanations, and per-domain performance breakdown. Multiple exam versions available with no repeated questions.</div>
+        </div>
+      </a>
+      <a class="tool-item" href="study-guide.html">
+        <div class="tool-emoji">📖</div>
+        <div>
+          <div class="tool-item-name">Study Guide</div>
+          <div class="tool-item-desc">An interactive reference covering all six Knowledge Areas. Core tasks, key techniques, exam tips, and glossary terms per area. Tap any technique to reveal its definition inline.</div>
+        </div>
+      </a>
+      <a class="tool-item" href="index.html">
+        <div class="tool-emoji">🗂</div>
+        <div>
+          <div class="tool-item-name">Prep Hub</div>
+          <div class="tool-item-desc">Quick-access dashboard with attempt history, exam target countdown, and one-tap navigation to all tools.</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Co-developed by</div>
+    <div class="credit-block">
+      <div class="credit-intro">
+        This project was built collaboratively — the domain knowledge, direction, and feedback came from a human preparing for the ECBA exam; the code, content, and architecture came from Claude. Every feature was discussed, iterated, and refined in conversation: the question bank, the storage system, the study guide interaction model, the navigation, even this about page. It's a genuine example of what AI-assisted development looks like in practice — not a prompt, but a partnership.
+      </div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div class="credit-sig">
+          <div class="credit-avatar">🧠</div>
+          <div>
+            <div class="credit-name">Claude (Anthropic)</div>
+            <div class="credit-role">AI · Code, content & architecture</div>
+          </div>
+        </div>
+        <div class="credit-sig">
+          <div class="credit-avatar">👤</div>
+          <div>
+            <div class="credit-name">Human collaborator</div>
+            <div class="credit-role">Direction, domain knowledge & product vision</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Tech Stack</div>
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="stack-name">Claude (Anthropic)</div>
+        <div class="stack-role">AI pair programmer. Generated all code, question content, and copy through conversational iteration.</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-name">GitHub</div>
+        <div class="stack-role">Version control and source of truth for all files.</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-name">Vercel</div>
+        <div class="stack-role">Hosting and deployment. Automatic deploys on every GitHub push.</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-name">Notion</div>
+        <div class="stack-role">Study log, attempt tracking, and project documentation — connected directly via MCP.</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-name">Cursor</div>
+        <div class="stack-role">AI-powered code editor for reviewing and managing files locally.</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-name">Pure HTML/CSS/JS</div>
+        <div class="stack-role">No frameworks, no build tools. Every file runs directly in any browser, self-contained.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    Questions and content are based on the BABOK® Guide v3. This project is not affiliated with or endorsed by IIBA. BABOK® is a registered trademark of the International Institute of Business Analysis. The target passing score of 75% is a community consensus estimate — IIBA does not publicly disclose the official passing threshold.
+  </div>
+
+</div>
+<style>.copy-src-btn{position:fixed;bottom:20px;right:20px;z-index:9999;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;border-radius:8px;border:1px solid rgba(91,141,238,0.4);background:rgba(14,17,23,0.92);color:#5b8dee;cursor:pointer;backdrop-filter:blur(8px);transition:all 0.15s;display:flex;align-items:center;gap:7px}.copy-src-btn:hover{border-color:#5b8dee;background:rgba(91,141,238,0.1)}.copy-src-btn.copied{border-color:#3ecf8e;color:#3ecf8e;background:rgba(62,207,142,0.08)}</style><button class="copy-src-btn" id="copySrcBtn" onclick="copySrc()"><span>&#x29C9;</span><span id="copySrcLabel">Copy Source</span></button><script>function copySrc(){navigator.clipboard.writeText(document.documentElement.outerHTML).then(()=>{const b=document.getElementById("copySrcBtn"),l=document.getElementById("copySrcLabel");b.classList.add("copied");l.textContent="Copied!";setTimeout(()=>{b.classList.remove("copied");l.textContent="Copy Source"},2000)})}<\/script>
+</body>
+</html>
